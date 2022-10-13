@@ -74,7 +74,7 @@ function crearTaulaFacil(){
         var fila = tabla.insertRow(f);
         for (let c = 0; c < 9; c++) {
             var columna = fila.insertCell(c);
-            columna.innerHTML=`<input type='text' border='1' maxLength='1' class='celda' id='${f}-${c}' disabled>`;
+            columna.innerHTML=`<input type='text' maxLength='1' class='celda' id='${f}-${c}' disabled>`;
             document.getElementById(`${f}-${c}`).value = sudokuFacil[f][c];
             if (document.getElementById(`${f}-${c}`).value == "-"){
                 document.getElementById(`${f}-${c}`).value = null;
