@@ -1,0 +1,64 @@
+* {
+    margin: 10px;
+}
+
+.exempleSudoku{
+    margin: auto;
+    text-align: center;
+    margin: 15px;
+}
+
+.exempleSudoku p{
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+.selecDif{
+    margin: auto;
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+
+#taulaSudoku{
+    margin: auto;
+    border: 3px solid black;
+    margin-top: 10%;
+
+}
+
+td{
+    border: 1px solid black;
+}
+
+tr:nth-of-type(3),tr:nth-of-type(6){
+    border-bottom: 3px solid black;
+    
+}
+
+td:nth-of-type(3),td:nth-of-type(6){
+    border-right: 3px solid black;
+    
+}
+
+.celda{
+    width: 50px;
+    height: 50px;
+    margin: 1px;
+    text-align: center;
+    border: 0px;
+}
+
+.numeros button {
+    margin-left: 200px;
+}
+
+.celda { 
+    margin: 0px;
+    /* background-color: rgb(215, 255, 255);  */
+}
+
+
+
