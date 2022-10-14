@@ -103,7 +103,9 @@ function crearTaulaDificil(){
 function resoldreTaulaFacil(){
     for (let f= 0; f < 9; f++){
         for (let c = 0; c < 9; c++){
+            
             document.getElementById(`${f}-${c}`).value = solucioFacil[f][c];
+            document.getElementById(`${f}-${c}`).innerHTML = `<input type='text' maxLength='1' class='celda' id='${f}-${c}' disabled>`;
         }
     }
 }
