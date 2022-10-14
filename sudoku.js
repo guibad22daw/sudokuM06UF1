@@ -1,9 +1,9 @@
-var numSeleccionat = null;
-var tileSelected = null;
+let numSeleccionat = null;
+let tileSelected = null;
 
-var errors = 0;
+let errors = 0;
 
-var sudokuFacil = [
+let sudokuFacil = [
     "---26-7-1",
     "68--7--9-",
     "19---45--",
@@ -15,7 +15,7 @@ var sudokuFacil = [
     "7-3-18---"
 ];
 
-var sudokuDificil = [
+let sudokuDificil = [
     "-5-37-1--",
     "--6----5-",
     "---8-----",
@@ -27,7 +27,7 @@ var sudokuDificil = [
     "-7---8---"
 ];
 
-var solucioFacil = [
+let solucioFacil = [
     "435269781",
     "682571493",
     "197834562",
@@ -39,7 +39,7 @@ var solucioFacil = [
     "763418259"
 ];
 
-var solucioDificil = [
+let solucioDificil = [
     "854372196",
     "326941758",
     "917865234",
@@ -56,25 +56,23 @@ window.onload = function () {
     document.getElementById('btn_facil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         crearTaulaFacil();
-        document.getElementById('numeros').innerHTML = `<button id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`
-        
+        document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`
     }
 
     document.getElementById('btn_dificil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         crearTaulaDificil();
         document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaDificil()">Solució</button>`
-        
     }
 }
 
 function crearTaulaFacil(){
     for (let f = 0; f < 9; f++) {
-        var tabla = document.getElementById("taulaSudoku");
-        var fila = tabla.insertRow(f);
+        let tabla = document.getElementById("taulaSudoku");
+        let fila = tabla.insertRow(f);
         for (let c = 0; c < 9; c++) {
-            var columna = fila.insertCell(c);
-            columna.innerHTML=`<input type='text' maxLength='1' class='celda' id='${f}-${c}' disabled>`;
+            let columna = fila.insertCell(c);
+            columna.innerHTML=`<input type='text' maxLength='1' class='celda' id='${f}-${c}' style="color:black;background: #d6ffeb;" disabled>`;
             document.getElementById(`${f}-${c}`).value = sudokuFacil[f][c];
             if (document.getElementById(`${f}-${c}`).value == "-"){
                 document.getElementById(`${f}-${c}`).value = null;
@@ -86,11 +84,11 @@ function crearTaulaFacil(){
 
 function crearTaulaDificil(){
     for (let f = 0; f < 9; f++) {
-        var tabla = document.getElementById("taulaSudoku");
-        var fila = tabla.insertRow(f);
+        let tabla = document.getElementById("taulaSudoku");
+        let fila = tabla.insertRow(f);
         for (let c = 0; c < 9; c++) {
-            var columna = fila.insertCell(c);
-            columna.innerHTML=`<input type='text' maxLength='1' class='celda' id='${f}-${c}' disabled>`;
+            let columna = fila.insertCell(c);
+            columna.innerHTML=`<input type='text' maxLength='1' class='celda' id='${f}-${c}' style="color:black" disabled>`;
             document.getElementById(`${f}-${c}`).value = sudokuDificil[f][c];
             if (document.getElementById(`${f}-${c}`).value == "-"){
                 document.getElementById(`${f}-${c}`).value = null;
@@ -101,6 +99,16 @@ function crearTaulaDificil(){
 }
 
 function resoldreTaulaFacil(){
+    document.getElementById("taulaSudoku").innerHTML = '';
+    for (let f = 0; f < 9; f++) {
+        let tabla = document.getElementById("taulaSudoku");
+        let fila = tabla.insertRow(f);
+        for (let c = 0; c < 9; c++) {
+            let columna = fila.insertCell(c);
+            columna.innerHTML=`<input type='text' maxLength='1' class='celda' id='${f}-${c}' style="color:black;background: #d6ffeb;" disabled>`;
+            document.getElementById(`${f}-${c}`).value = sudokuFacil[f][c];
+        }
+    }       
     for (let f= 0; f < 9; f++){
         for (let c = 0; c < 9; c++){
             document.getElementById(`${f}-${c}`).value = solucioFacil[f][c];
@@ -109,6 +117,7 @@ function resoldreTaulaFacil(){
 }
 
 function resoldreTaulaDificil(){
+ 
     for (let f= 0; f < 9; f++){
         for (let c = 0; c < 9; c++){
             document.getElementById(`${f}-${c}`).value = solucioDificil[f][c];
