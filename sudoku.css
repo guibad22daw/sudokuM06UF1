@@ -50,18 +50,51 @@ td:nth-of-type(3),td:nth-of-type(6){
     text-align: center;
     border: 1px solid black;
     background-color: whitesmoke;
+    
 
 }
 
 .celda:focus{
     outline: none;
-    background-color:rgb(185, 230, 255);
+    background-color:rgb(101, 137, 216);
+    transition: 0.5s;
 }
 
 .dropdown-menu {
     border: none;
 }
 
+.celdaCorrecta {
+    background-color: #35e484;
+    color:green;
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    text-align: center;
+    border: 1px solid black;
+    animation: Verde 1s ;
+} 
 
+.celdaIncorrecta{
+    background-color: #fd8b8b;
+    color:rgb(0, 0, 0);
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+
+.numeros{
+    text-align: center;
+}
+
+
+
+@keyframes Verde {
+    from {background-color: white;}
+    to {background-color: #35e484;}
+  }
 
 
