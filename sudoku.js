@@ -211,6 +211,10 @@ function celdaIncorrecta(f,c){
     return `<input type='text' maxLength='1' class='celdaIncorrecta' id='${f}-${c}'>`;
 }
 
-function celda(f,c){
+function celdaNormal(f,c){
     return `<input type='text' maxLength='1' class='celda' id='${f}-${c}'>`;
+}
+
+function celdaSeleccionada(f,c){
+
 }
