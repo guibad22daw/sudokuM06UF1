@@ -100,6 +100,7 @@ window.onload = function () {
 
 let celda = 1;
 function crearTaulaFacil() {
+    celda = 1;
     for (let f = 0; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
@@ -118,17 +119,21 @@ function crearTaulaFacil() {
 function pintarTaula(id) {
     let casellaSeleccionada = id;
     for (let i = 1; i <= 81; i++) {
+        
         if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
-            document.getElementById(i).style.background = 'red';
+            document.getElementById(i).style.background ="#b7f1f7";;
+        
         } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
-            document.getElementById(i).style.background = 'red';
-        } 
+            document.getElementById(i).style.background ="#b7f1f7";
+        }
+        
         // else if (funcioQuadrant(i) == true) {
-        //     document.getElementById(i).style.background = 'beige';
+            // document.getElementById(i).style.background = 'red';
         // } 
         else {
             document.getElementById(i).style.background = 'white';
         }
+        document.getElementById(i).webkitAnimationPlayState = "running";
     }
 }
 
@@ -166,21 +171,17 @@ function crearTaulaDificil() {
 
 function resoldreTaulaFacil() {
     document.getElementById("taulaSudoku").innerHTML = '';
-    for (let f = 0; f < 9; f++) {
+    for (let f = 0,celda=1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++) {
+        for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(f, c);
-            document.getElementById(`${f}-${c}`).value = sudokuFacil[f][c];
+            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
+            columna.innerHTML = celdaCorrecta(celda);
+            document.getElementById(`${celda}`).value = solucioFacil[f][c];
+            
         }
     }
-    for (let f = 0; f < 9; f++) {
-        for (let c = 0; c < 9; c++) {
-            document.getElementById(`${f}-${c}`).value = solucioFacil[f][c];
-        }
-    }
-    columna.style.webkitAnimationPlayState = "running";
 }
 
 function resoldreTaulaIntermig() {

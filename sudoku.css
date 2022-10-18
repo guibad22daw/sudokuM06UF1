@@ -58,7 +58,8 @@ td:nth-of-type(3),td:nth-of-type(6){
 .celda:focus{
     outline: none;
     background-color:rgb(76, 228, 255);
-    transition: 0.5s;
+    animation: Naranja 1s;
+    animation-iteration-count: infinite;
 }
 
 .dropdown-menu {
@@ -87,7 +88,7 @@ td:nth-of-type(3),td:nth-of-type(6){
 }
 
 .celdaSeleccionada{
-    background-color: #d5f3ff;
+    background-color: #5cd0fd;
     color:rgb(0, 0, 0);
     width: 50px;
     height: 50px;
@@ -108,9 +109,9 @@ td:nth-of-type(3),td:nth-of-type(6){
     to {background-color: #d6fce7;}
   }
 
-  @keyframes Azul {
-    from {background-color: white;}
-    to {background-color: #d5f3ff;}
+  @keyframes Naranja {
+    from {background-color: #ffc982;}
+    to {background-color: #ffc982;}
   }
 
 
