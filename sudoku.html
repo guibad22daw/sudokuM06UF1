@@ -37,14 +37,17 @@
         <!-- Selecció de dificultat-->
         <div class="selecDif">
             <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+                aria-expanded="false" tabindex="-1">
                 Selecció de dificultat
             </button>
             <ul class="dropdown-menu">
-                <button type="button" class="btn btn-info" id="btn_facil">Fàcil</button>
-                <button type="button" class="btn btn-success" id="btn_intermig">Intermig</button>
-                <button type="button" class="btn btn-danger" id="btn_dificil">Difícil</button>
+                <button type="button" class="btn btn-info" id="btn_facil" tabindex="-1">Fàcil</button>
+                <button type="button" class="btn btn-success" id="btn_intermig" tabindex="-1">Intermig</button>
+                <button type="button" class="btn btn-danger" id="btn_dificil" tabindex="-1">Difícil</button>
             </ul>
+        </div>
+        <div id="top" class="top">
+            <h3 class="dificultat" id="dificultat"></h3>
         </div>
         <table id="taulaSudoku"></table>
 

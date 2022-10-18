@@ -75,16 +75,44 @@ let solucioDificil = [
     "679138425"
 ];
 
+let square1 = [
+    1,2,3,
+    10,11,12,
+    19,20,21
+];
+
+let square2 = [
+    4,5,6,
+    13,14,15,
+    22,23,24
+];
+let square3 = [
+    7,8,9,
+    16,17,18,
+    25,26,27
+]
+
+let square4 = [
+    28,29,30,
+    37,38,39,
+    46,47,48
+]
+let square5 = [
+
+]
+
 window.onload = function () {
 
     document.getElementById('btn_facil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
+        document.getElementById("dificultat").innerHTML = 'Fàcil';
         crearTaulaFacil();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
     }
 
     document.getElementById('btn_intermig').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
+        document.getElementById("dificultat").innerHTML = 'Intermig';
         crearTaulaIntermig();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaIntermig()">Solució</button>`
 
@@ -92,8 +120,9 @@ window.onload = function () {
 
     document.getElementById('btn_dificil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
+        document.getElementById("dificultat").innerHTML = 'Difícil';
         crearTaulaDificil();
-        document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaDificil()">Solució</button>`;
+        document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" tabindex="-1" onclick="resoldreTaulaDificil()">Solució</button>`;
     }
 }
 
@@ -110,7 +139,7 @@ function crearTaulaFacil() {
             document.getElementById(`${celda}`).value = sudokuFacil[f][c];
             if (document.getElementById(`${celda}`).value == "-") {
                 document.getElementById(`${celda}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onclick='pintarTaula(id)'>`;
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintarTaula(id)'>`;
             }
         }
     }
@@ -127,7 +156,7 @@ function crearTaulaIntermig() {
             document.getElementById(`${celda}`).value = sudokuIntermig[f][c];
             if (document.getElementById(`${celda}`).value == "-") {
                 document.getElementById(`${celda}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onclick='pintarTaula(id)'>`;
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintarTaula(id)' >`;
             }
         }
     }
@@ -144,7 +173,7 @@ function crearTaulaDificil() {
             document.getElementById(`${celda}`).value = sudokuDificil[f][c];
             if (document.getElementById(`${celda}`).value == "-") {
                 document.getElementById(`${celda}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onclick='pintarTaula(id)'>`;
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintarTaula(id)'>`;
             }
         }
     }
@@ -155,7 +184,7 @@ function pintarTaula(id) {
     for (let i = 1; i <= 81; i++) {
         
         if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
-            document.getElementById(i).style.background ="#caf2fa";;
+            document.getElementById(i).style.background ="#caf2fa";
         
         } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
             document.getElementById(i).style.background ="#caf2fa";
@@ -167,7 +196,7 @@ function pintarTaula(id) {
         else {
             document.getElementById(i).style.background = 'white';
         }
-        document.getElementById(i).webkitAnimationPlayState = "running";
+        document.getElementById(i).webkitAnimationPlayState = "stop";
     }
 }
 
