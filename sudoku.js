@@ -100,6 +100,7 @@ window.onload = function () {
 
 let celda = 1;
 function crearTaulaFacil() {
+    celda = 1;
     for (let f = 0; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
