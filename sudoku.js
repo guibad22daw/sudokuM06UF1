@@ -166,21 +166,17 @@ function crearTaulaDificil() {
 
 function resoldreTaulaFacil() {
     document.getElementById("taulaSudoku").innerHTML = '';
-    for (let f = 0; f < 9; f++) {
+    for (let f = 0,celda=1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++) {
+        for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(f, c);
-            document.getElementById(`${f}-${c}`).value = sudokuFacil[f][c];
+            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
+            columna.innerHTML = celdaCorrecta(celda);
+            document.getElementById(`${celda}`).value = solucioFacil[f][c];
+            
         }
     }
-    for (let f = 0; f < 9; f++) {
-        for (let c = 0; c < 9; c++) {
-            document.getElementById(`${f}-${c}`).value = solucioFacil[f][c];
-        }
-    }
-    columna.style.webkitAnimationPlayState = "running";
 }
 
 function resoldreTaulaIntermig() {
