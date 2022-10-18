@@ -24,9 +24,9 @@
 
 #taulaSudoku{
     margin: auto;
-    border: 6px solid black;
+    border: 4px solid black;
     margin-top: 65px;
-    font-size: 20px;
+    font-size: 23px;
 
 }
 
@@ -35,12 +35,12 @@ td{
 }
 
 tr:nth-of-type(3),tr:nth-of-type(6){
-    border-bottom: 3px solid black;
+    border-bottom: 2.5px solid black;
     
 }
 
 td:nth-of-type(3),td:nth-of-type(6){
-    border-right: 3px solid black;
+    border-right: 2.5px solid black;
     
 }
 
@@ -67,19 +67,19 @@ td:nth-of-type(3),td:nth-of-type(6){
 }
 
 .celdaCorrecta {
-    background-color: #d6fce7;;
-    color:rgb(2, 104, 2);
+    background-color:white;
+    font-weight: bold;
+    color:black;
     width: 50px;
     height: 50px;
     margin: 0px;
     text-align: center;
     border: 1px solid black;
-    animation: Verde 1s ;
 } 
 
 .celdaIncorrecta{
     background-color: #eec9c9;
-    color:rgb(0, 0, 0);
+    color:black;
     width: 50px;
     height: 50px;
     margin: 0px;
@@ -104,14 +104,10 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 
 
-@keyframes Verde {
-    from {background-color: white;}
-    to {background-color: #d6fce7;}
-  }
 
-  @keyframes Naranja {
+@keyframes Naranja {
     from {background-color: #ffc982;}
     to {background-color: #ffc982;}
-  }
+}
 
 

@@ -116,15 +116,49 @@ function crearTaulaFacil() {
     }
 }
 
+function crearTaulaIntermig() {
+    celda = 1;
+    for (let f = 0; f < 9; f++) {
+        let tabla = document.getElementById("taulaSudoku");
+        let fila = tabla.insertRow(f);
+        for (let c = 0; c < 9; c++, celda++) {
+            let columna = fila.insertCell(c);
+            columna.innerHTML = celdaCorrecta(celda);
+            document.getElementById(`${celda}`).value = sudokuIntermig[f][c];
+            if (document.getElementById(`${celda}`).value == "-") {
+                document.getElementById(`${celda}`).value = null;
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onclick='pintarTaula(id)'>`;
+            }
+        }
+    }
+}
+
+function crearTaulaDificil() {
+    celda = 1;
+    for (let f = 0; f < 9; f++) {
+        let tabla = document.getElementById("taulaSudoku");
+        let fila = tabla.insertRow(f);
+        for (let c = 0; c < 9; c++, celda++) {
+            let columna = fila.insertCell(c);
+            columna.innerHTML = celdaCorrecta(celda);
+            document.getElementById(`${celda}`).value = sudokuDificil[f][c];
+            if (document.getElementById(`${celda}`).value == "-") {
+                document.getElementById(`${celda}`).value = null;
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onclick='pintarTaula(id)'>`;
+            }
+        }
+    }
+}
+
 function pintarTaula(id) {
     let casellaSeleccionada = id;
     for (let i = 1; i <= 81; i++) {
         
         if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
-            document.getElementById(i).style.background ="#b7f1f7";;
+            document.getElementById(i).style.background ="#caf2fa";;
         
         } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
-            document.getElementById(i).style.background ="#b7f1f7";
+            document.getElementById(i).style.background ="#caf2fa";
         }
         
         // else if (funcioQuadrant(i) == true) {
@@ -134,38 +168,6 @@ function pintarTaula(id) {
             document.getElementById(i).style.background = 'white';
         }
         document.getElementById(i).webkitAnimationPlayState = "running";
-    }
-}
-
-function crearTaulaIntermig() {
-    for (let f = 0; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++) {
-            let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(f, c)
-            document.getElementById(`${f}-${c}`).value = sudokuIntermig[f][c];
-            if (document.getElementById(`${f}-${c}`).value == "-") {
-                document.getElementById(`${f}-${c}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${f}-${c}'>`;
-            }
-        }
-    }
-}
-
-function crearTaulaDificil() {
-    for (let f = 0; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++) {
-            let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(f, c)
-            document.getElementById(`${f}-${c}`).value = sudokuDificil[f][c];
-            if (document.getElementById(`${f}-${c}`).value == "-") {
-                document.getElementById(`${f}-${c}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${f}-${c}'>`;
-            }
-        }
     }
 }
 
@@ -186,36 +188,30 @@ function resoldreTaulaFacil() {
 
 function resoldreTaulaIntermig() {
     document.getElementById("taulaSudoku").innerHTML = '';
-    for (let f = 0; f < 9; f++) {
+    for (let f = 0,celda=1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++) {
+        for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(f, c);
-            document.getElementById(`${f}-${c}`).value = sudokuIntermig[f][c];
-        }
-    }
-    for (let f = 0; f < 9; f++) {
-        for (let c = 0; c < 9; c++) {
-            document.getElementById(`${f}-${c}`).value = solucioIntermig[f][c];
+            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
+            columna.innerHTML = celdaCorrecta(celda);
+            document.getElementById(`${celda}`).value = solucioIntermig[f][c];
+            
         }
     }
 }
 
 function resoldreTaulaDificil() {
     document.getElementById("taulaSudoku").innerHTML = '';
-    for (let f = 0; f < 9; f++) {
+    for (let f = 0,celda=1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++) {
+        for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(f, c);
-            document.getElementById(`${f}-${c}`).value = sudokuDificil[f][c];
-        }
-    }
-    for (let f = 0; f < 9; f++) {
-        for (let c = 0; c < 9; c++) {
-            document.getElementById(`${f}-${c}`).value = solucioDificil[f][c];
+            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
+            columna.innerHTML = celdaCorrecta(celda);
+            document.getElementById(`${celda}`).value = solucioDificil[f][c];
+            
         }
     }
 }
