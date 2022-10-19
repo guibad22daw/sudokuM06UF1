@@ -131,7 +131,7 @@ window.onload = function () {
     document.getElementById('btn_facil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Fàcil</h3>';
-        document.getElementById("top").innerHTML += `<h2 id="minuts"></h2><h2>:</h2><h2 id="segons"/></h2>`;
+        document.getElementById("top").innerHTML += `<div class="cronometre" style="display:inline-block"><span id="minuts"></span>:<span id="segons"/></span></div>`;
         crearTaulaFacil();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
@@ -140,7 +140,7 @@ window.onload = function () {
     document.getElementById('btn_intermig').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Intermig</h3>';
-        document.getElementById("top").innerHTML += `<h2 id="minuts"></h2><h2>:</h2><h2 id="segons"/></h2>`;
+        document.getElementById("top").innerHTML += `<div class="cronometre" style="display:inline-block"><span id="minuts"></span>:<span id="segons"/></span></div>`;
         crearTaulaIntermig();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaIntermig()">Solució</button>`
@@ -150,7 +150,7 @@ window.onload = function () {
     document.getElementById('btn_dificil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
-        document.getElementById("top").innerHTML += `<h2 id="minuts"></h2><h2>:</h2><h2 id="segons"/></h2>`;
+        document.getElementById("top").innerHTML += `<div class="cronometre" style="display:inline-block"><span id="minuts"></span>:<span id="segons"/></span></div>`;
         crearTaulaDificil();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaDificil()">Solució</button>`;
