@@ -113,14 +113,21 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 .top {
     margin: auto;
-    margin-top: 65px;
+    margin-top: 25px;
     width: 480px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .dificultat{
     margin-left: 0px;
-    margin-top: 65px;
     text-align: left;
+    animation: fadeIn 1s;
+}
+
+.cronometre {
+    margin-right: 0px;
+    text-align: right;
     animation: fadeIn 1s;
 }
 
