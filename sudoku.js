@@ -121,8 +121,8 @@ let square8 = [
 let square9 = [
     61, 62, 63,
     70, 71, 72,
-    79, 80, 81
-]
+    79, 80, 81,
+];
 
 window.onload = function () {
 
@@ -205,77 +205,72 @@ function crearTaulaDificil() {
 function pintarTaula(id) {
     let casellaSeleccionada = id;
     for (let i = 1; i <= 81; i++) {
-        if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
-            document.getElementById(i).style.background = "#caf2fa";
+        pintarFilaColumna(casellaSeleccionada,i);
+        pintarQuadrant(casellaSeleccionada)
 
-        } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
-            document.getElementById(i).style.background = "#caf2fa";
-        }
 
-        else {
-            pintarQuadrant(casellaSeleccionada);
-            document.getElementById(i).style.background = 'white';
-        }
         document.getElementById(i).webkitAnimationPlayState = "stop";
     }
 }
 
+function pintarFilaColumna(casellaSeleccionada,i) {
+    if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
+        document.getElementById(i).style.background = "#caf2fa";
+
+    } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
+        document.getElementById(i).style.background = "#caf2fa";
+    }else{
+        document.getElementById(i).style.background = "white";
+    }
+}
 
 function pintarQuadrant(id) {
     if (square1.includes(parseInt(id))) {
         for (let x = 0; x < square1.length; x++) {
-            console.log(square1[x]);
+
             document.getElementById(square1[x]).style.background = "#caf2fa";
         }
     }
     else if (square2.includes(parseInt(id))) {
         for (let x = 0; x < square2.length; x++) {
-            console.log(square2[x]);
             document.getElementById(square2[x]).style.background = "#caf2fa";
         }
     }
     else if (square3.includes(parseInt(id))) {
         for (let x = 0; x < square3.length; x++) {
-            console.log(square3[x]);
             document.getElementById(square3[x]).style.background = "#caf2fa";
         }
     }
     else if (square4.includes(parseInt(id))) {
         for (let x = 0; x < square4.length; x++) {
-            console.log(square4[x]);
             document.getElementById(square4[x]).style.background = "#caf2fa";
         }
     }
     else if (square5.includes(parseInt(id))) {
         for (let x = 0; x < square5.length; x++) {
-            console.log(square5[x]);
             document.getElementById(square5[x]).style.background = "#caf2fa";
         }
     }
     else if (square6.includes(parseInt(id))) {
         for (let x = 0; x < square6.length; x++) {
-            console.log(square6[x]);
             document.getElementById(square6[x]).style.background = "#caf2fa";
         }
     }
     else if (square7.includes(parseInt(id))) {
         for (let x = 0; x < square7.length; x++) {
-            console.log(square7[x]);
             document.getElementById(square7[x]).style.background = "#caf2fa";
         }
     }
     else if (square8.includes(parseInt(id))) {
         for (let x = 0; x < square8.length; x++) {
-            console.log(square8[x]);
             document.getElementById(square8[x]).style.background = "#caf2fa";
         }
     }
     else if (square9.includes(parseInt(id))) {
         for (let x = 0; x < square9.length; x++) {
-            console.log(square9[x]);
             document.getElementById(square9[x]).style.background = "#caf2fa";
         }
-    }                              
+    }
 }
 
 function resoldreTaulaFacil() {
