@@ -129,23 +129,28 @@ window.onload = function () {
     document.getElementById('btn_facil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Fàcil</h3>';
-        document.getElementById("top").innerHTML += `<h2 id="cronometre" class="cronometre">00:00</h2>`;
+        document.getElementById("top").innerHTML += `<h2 id="minuts"></h2>:<h2 id="segons"/></h2>`;
         crearTaulaFacil();
+        startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
     }
 
     document.getElementById('btn_intermig').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
-        document.getElementById("dificultat").innerHTML = '<h3 class="dificultat" id="dificultat">Intermig</h3>';
+        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Intermig</h3>';
+        document.getElementById("top").innerHTML += `<h2 id="minuts"></h2>:<h2 id="segons"/></h2>`;
         crearTaulaIntermig();
+        startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaIntermig()">Solució</button>`
 
     }
 
     document.getElementById('btn_dificil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
-        document.getElementById("dificultat").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
+        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
+        document.getElementById("top").innerHTML += `<h2 id="minuts"></h2>:<h2 id="segons"/></h2>`;
         crearTaulaDificil();
+        startCronometre();
         document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaDificil()">Solució</button>`;
     }
 }
@@ -203,6 +208,53 @@ function crearTaulaDificil() {
     }
 }
 
+function startCronometre(){
+    let minuts = 0, segons = 0, centesimes = 0;
+
+    const idMinuts = document.getElementById("minuts");
+    const idSegons= document.getElementById("segons");
+    
+    const sumarMinut = () => {
+
+		if(minuts < 99) minuts++;
+	}
+
+	const sumarSegon = () => {
+
+		if(segons === 59){
+			segons = 0;
+			sumarMinut();
+		}
+		else{
+			segons++;
+		}
+	}
+
+	const incrementar = () => {
+
+		if(centesimes === 99){
+			centesimes = 0;
+			sumarSegon();
+		}
+		else {
+			centesimes++;
+		}
+
+        if(segons < 10){
+            idSegons.innerHTML = `0${segons}`;
+        }else{
+            idSegons.innerHTML = segons;
+        }
+
+        if(minuts < 10){
+            idMinuts.innerHTML = `0${minuts}` ;
+        }
+        
+	}
+
+	running = setInterval(incrementar, 10);
+}
+
 function pintarTaula(id) {
     let casellaSeleccionada = id;
     for (let i = 1; i <= 81; i++) {
@@ -238,6 +290,7 @@ function pintarQuadrant(id) {
 }
 
 function resoldreTaulaFacil() {
+    stopCronometre()
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
@@ -253,6 +306,7 @@ function resoldreTaulaFacil() {
 }
 
 function resoldreTaulaIntermig() {
+    stopCronometre()
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
@@ -268,6 +322,7 @@ function resoldreTaulaIntermig() {
 }
 
 function resoldreTaulaDificil() {
+    stopCronometre()
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
@@ -280,6 +335,11 @@ function resoldreTaulaDificil() {
 
         }
     }
+}
+
+function stopCronometre(){
+    clearInterval(running);
+	running = null;
 }
 
 

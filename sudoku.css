@@ -125,14 +125,10 @@ td:nth-of-type(3),td:nth-of-type(6){
     animation: fadeIn 1s;
 }
 
-.cronometre {
-    margin-right: 0px;
-    text-align: right;
+.top h2{
+    display: inline;
     animation: fadeIn 1s;
 }
-
-
-
 
 @keyframes Naranja {
     from {background-color: #caf2fa;}
