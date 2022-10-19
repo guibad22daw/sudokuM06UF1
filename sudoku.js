@@ -128,7 +128,8 @@ window.onload = function () {
 
     document.getElementById('btn_facil').onclick = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
-        document.getElementById("dificultat").innerHTML = '<h3 class="dificultat" id="dificultat">Fàcil</h3>';
+        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Fàcil</h3>';
+        document.getElementById("top").innerHTML += `<h2 id="cronometre" class="cronometre">00:00</h2>`;
         crearTaulaFacil();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
     }
@@ -205,21 +206,19 @@ function crearTaulaDificil() {
 function pintarTaula(id) {
     let casellaSeleccionada = id;
     for (let i = 1; i <= 81; i++) {
-        pintarFilaColumna(casellaSeleccionada,i);
+        pintarFilaColumna(casellaSeleccionada, i);
         pintarQuadrant(casellaSeleccionada)
-
-
         document.getElementById(i).webkitAnimationPlayState = "stop";
     }
 }
 
-function pintarFilaColumna(casellaSeleccionada,i) {
+function pintarFilaColumna(casellaSeleccionada, i) {
     if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
         document.getElementById(i).style.background = "#caf2fa";
 
     } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
         document.getElementById(i).style.background = "#caf2fa";
-    }else{
+    } else {
         document.getElementById(i).style.background = "white";
     }
 }
@@ -235,7 +234,7 @@ function pintarQuadrant(id) {
     else if (square8.includes(parseInt(id))) for (let x = 0; x < square8.length; x++)document.getElementById(square8[x]).style.background = "#caf2fa";
     else if (square9.includes(parseInt(id))) for (let x = 0; x < square9.length; x++)document.getElementById(square9[x]).style.background = "#caf2fa";
 
-    
+
 }
 
 function resoldreTaulaFacil() {
