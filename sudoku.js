@@ -124,6 +124,8 @@ let square9 = [
     79, 80, 81,
 ];
 
+let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
+
 window.onload = function () {
 
     document.getElementById('btn_facil').onclick = function () {
@@ -276,17 +278,11 @@ function pintarFilaColumna(casellaSeleccionada, i) {
 }
 
 function pintarQuadrant(id) {
-    if (square1.includes(parseInt(id))) for (let x = 0; x < square1.length; x++)document.getElementById(square1[x]).style.background = "#caf2fa";
-    else if (square2.includes(parseInt(id))) for (let x = 0; x < square2.length; x++)document.getElementById(square2[x]).style.background = "#caf2fa";
-    else if (square3.includes(parseInt(id))) for (let x = 0; x < square3.length; x++)document.getElementById(square3[x]).style.background = "#caf2fa";
-    else if (square4.includes(parseInt(id))) for (let x = 0; x < square4.length; x++)document.getElementById(square4[x]).style.background = "#caf2fa";
-    else if (square5.includes(parseInt(id))) for (let x = 0; x < square5.length; x++)document.getElementById(square5[x]).style.background = "#caf2fa";
-    else if (square6.includes(parseInt(id))) for (let x = 0; x < square6.length; x++)document.getElementById(square6[x]).style.background = "#caf2fa";
-    else if (square7.includes(parseInt(id))) for (let x = 0; x < square7.length; x++)document.getElementById(square7[x]).style.background = "#caf2fa";
-    else if (square8.includes(parseInt(id))) for (let x = 0; x < square8.length; x++)document.getElementById(square8[x]).style.background = "#caf2fa";
-    else if (square9.includes(parseInt(id))) for (let x = 0; x < square9.length; x++)document.getElementById(square9[x]).style.background = "#caf2fa";
-
-
+    for(square of squares){
+        if (square.includes(parseInt(id))){
+            for (let x = 0; x < square.length; x++) document.getElementById(square[x]).style.background = "#caf2fa";
+        } 
+    }
 }
 
 function resoldreTaulaFacil() {
