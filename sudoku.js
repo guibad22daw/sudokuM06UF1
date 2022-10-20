@@ -342,43 +342,21 @@ function resoldreTaulaDificil() {
 }
 
 function mostraErrors() {
-    let valorCelda;
-    celda = 1;
-    errors = 0;
-      for (let f = 0; f < 9; f++) {
+    let valorCelda, sol;
+    celda = 1; errors = 0;
+    if (botoFacil) {sol=solucioFacil} else if (botoIntermig) {sol=solucioIntermig} else if (botoDificil) {sol=solucioDificil}
+    for (let f = 0; f < 9; f++) {
         for (let c = 0; c < 9; c++, celda++) {
             valorCelda = document.getElementById(`${celda}`).value;
-            if (botoFacil) {
-                if (valorCelda == solucioFacil[f][c]) {
-                    // console.log(valorCelda, sudokuFacil[f][c]);
-                    document.getElementById(`${celda}`).style.background = 'white';
-                } else {
-                    document.getElementById(`${celda}`).style.background = '#ff9d96';
-                    errors++;
-                }
-            } else if (botoIntermig) {
-                if (valorCelda == solucioIntermig[f][c]) {
-                    // console.log(valorCelda, sudokuFacil[f][c]);
-                    document.getElementById(`${celda}`).style.background = 'white';
-                } else {
-                    document.getElementById(`${celda}`).style.background = '#ff9d96';
-                    errors++;
-                }
-            } else if (botoDificil) {
-                if (valorCelda == solucioDificil[f][c]) {
-                    // console.log(valorCelda, sudokuFacil[f][c]);
-                    document.getElementById(`${celda}`).style.background = 'white';
-                } else {
-                    document.getElementById(`${celda}`).style.background = '#ff9d96';
-                    errors++;
-                }
+            if (valorCelda == sol[f][c]) document.getElementById(`${celda}`).style.background = 'white';
+            else {
+                document.getElementById(`${celda}`).style.background = '#ff9d96';
+                errors++;
             }
         }
     }
     document.getElementById('errors').innerHTML = ''
     document.getElementById('errors').innerHTML = `<h6>Tens ${errors} errors</h6>`;
-
-
 }
 
 function stopCronometre() {
