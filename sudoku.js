@@ -135,6 +135,7 @@ window.onload = function () {
         crearTaulaFacil();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
+        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
     }
 
     document.getElementById('btn_intermig').onclick = function () {
@@ -144,6 +145,7 @@ window.onload = function () {
         crearTaulaIntermig();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaIntermig()">Solució</button>`
+        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
 
     }
 
@@ -154,6 +156,7 @@ window.onload = function () {
         crearTaulaDificil();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaDificil()">Solució</button>`;
+        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
     }
 }
 
@@ -329,6 +332,21 @@ function resoldreTaulaDificil() {
             columna.innerHTML = celdaCorrecta(celda);
             document.getElementById(`${celda}`).value = solucioDificil[f][c];
 
+        }
+    }
+}
+
+function mostraErrors() {
+    celda = 1;
+    for (let f = 0; f < 9; f++) {
+        for (let c = 0; c < 9; c++, celda++) {
+            valorCelda = document.getElementById(`${celda}`).value;
+            if (valorCelda == sudokuFacil[f][c]) {
+                console.log(valorCelda,sudokuFacil[f][c]);
+                document.getElementById(`${celda}`).style.background = 'white';
+            }else{
+                document.getElementById(`${celda}`).style.background = '#ff9d96';
+            }
         }
     }
 }

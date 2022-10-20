@@ -109,6 +109,10 @@ td:nth-of-type(3),td:nth-of-type(6){
     text-align: center;
 }
 
+.numeros button{
+    margin-left: 10px;
+}
+
 .top {
     margin: auto;
     margin-top: 25px;
