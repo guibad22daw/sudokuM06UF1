@@ -125,10 +125,12 @@ let square9 = [
 ];
 
 let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
+let botoFacil = 0, botoIntermig = 0, botoDificil = 0;
 
 window.onload = function () {
 
     document.getElementById('btn_facil').onclick = function () {
+        botoFacil = 1; botoDificil = 0; botoIntermig = 0;
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Fàcil</h3>';
         document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
@@ -136,10 +138,11 @@ window.onload = function () {
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
         document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
-        document.getElementById('numeros').innerHTML += `<label id="errors" class="errors"></label>`;
+        document.getElementById('numeros').innerHTML += `<div id="errors" class="errors"></div>`;
     }
 
     document.getElementById('btn_intermig').onclick = function () {
+        botoFacil = 0; botoDificil = 0; botoIntermig = 1;
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Intermig</h3>';
         document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
@@ -151,6 +154,7 @@ window.onload = function () {
     }
 
     document.getElementById('btn_dificil').onclick = function () {
+        botoFacil = 0; botoDificil = 1; botoIntermig = 0;
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
         document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
@@ -341,22 +345,40 @@ function mostraErrors() {
     let valorCelda;
     celda = 1;
     errors = 0;
-    for (let f = 0; f < 9; f++) {
+      for (let f = 0; f < 9; f++) {
         for (let c = 0; c < 9; c++, celda++) {
             valorCelda = document.getElementById(`${celda}`).value;
-            if (valorCelda == solucioFacil[f][c]) {
-                // console.log(valorCelda, sudokuFacil[f][c]);
-                document.getElementById(`${celda}`).style.background = 'white';
-            } else {
-                document.getElementById(`${celda}`).style.background = '#ff9d96';
-                errors++;
+            if (botoFacil) {
+                if (valorCelda == solucioFacil[f][c]) {
+                    // console.log(valorCelda, sudokuFacil[f][c]);
+                    document.getElementById(`${celda}`).style.background = 'white';
+                } else {
+                    document.getElementById(`${celda}`).style.background = '#ff9d96';
+                    errors++;
+                }
+            } else if (botoIntermig) {
+                if (valorCelda == solucioIntermig[f][c]) {
+                    // console.log(valorCelda, sudokuFacil[f][c]);
+                    document.getElementById(`${celda}`).style.background = 'white';
+                } else {
+                    document.getElementById(`${celda}`).style.background = '#ff9d96';
+                    errors++;
+                }
+            } else if (botoDificil) {
+                if (valorCelda == solucioDificil[f][c]) {
+                    // console.log(valorCelda, sudokuFacil[f][c]);
+                    document.getElementById(`${celda}`).style.background = 'white';
+                } else {
+                    document.getElementById(`${celda}`).style.background = '#ff9d96';
+                    errors++;
+                }
             }
         }
     }
-    document.getElementById('errors').innerText = ""
-    document.getElementById('errors').innerText = `Tens ${errors} errors`;
+    document.getElementById('errors').innerHTML = ''
+    document.getElementById('errors').innerHTML = `<h6>Tens ${errors} errors</h6>`;
 
-    
+
 }
 
 function stopCronometre() {

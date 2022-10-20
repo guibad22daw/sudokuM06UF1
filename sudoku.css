@@ -67,10 +67,6 @@ td:nth-of-type(3),td:nth-of-type(6){
     
 }
 
-.errors{
-    font-weight: bold;
-}
-
 .dropdown-menu {
     border: none;
 }
@@ -108,7 +104,14 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 
 .numeros{
+    margin-top: 20px;
     text-align: center;
+    display: inline-block;
+    margin-left: 41.5%; 
+}
+
+.errors{
+    float: right;
 }
 
 .numeros button{
