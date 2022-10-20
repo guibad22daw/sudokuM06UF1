@@ -136,6 +136,7 @@ window.onload = function () {
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
         document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
+        document.getElementById('numeros').innerHTML += `<label id="errors" class="errors"></label>`;
     }
 
     document.getElementById('btn_intermig').onclick = function () {
@@ -213,51 +214,51 @@ function crearTaulaDificil() {
     }
 }
 
-function startCronometre(){
+function startCronometre() {
     let minuts = 0, segons = 0, centesimes = 0;
 
     const idMinuts = document.getElementById("minuts");
-    const idSegons= document.getElementById("segons");
-    
+    const idSegons = document.getElementById("segons");
+
     const sumarMinut = () => {
 
-		if(minuts < 99) minuts++;
-	}
+        if (minuts < 99) minuts++;
+    }
 
-	const sumarSegon = () => {
+    const sumarSegon = () => {
 
-		if(segons === 59){
-			segons = 0;
-			sumarMinut();
-		}
-		else{
-			segons++;
-		}
-	}
+        if (segons === 59) {
+            segons = 0;
+            sumarMinut();
+        }
+        else {
+            segons++;
+        }
+    }
 
-	const incrementar = () => {
+    const incrementar = () => {
 
-		if(centesimes === 99){
-			centesimes = 0;
-			sumarSegon();
-		}
-		else {
-			centesimes++;
-		}
+        if (centesimes === 99) {
+            centesimes = 0;
+            sumarSegon();
+        }
+        else {
+            centesimes++;
+        }
 
-        if(segons < 10){
+        if (segons < 10) {
             idSegons.innerHTML = `0${segons}`;
-        }else{
+        } else {
             idSegons.innerHTML = segons;
         }
 
-        if(minuts < 10){
-            idMinuts.innerHTML = `0${minuts}` ;
+        if (minuts < 10) {
+            idMinuts.innerHTML = `0${minuts}`;
         }
-        
-	}
 
-	running = setInterval(incrementar, 10);
+    }
+
+    running = setInterval(incrementar, 10);
 }
 
 function pintarTaula(id) {
@@ -281,10 +282,10 @@ function pintarFilaColumna(casellaSeleccionada, i) {
 }
 
 function pintarQuadrant(id) {
-    for(square of squares){
-        if (square.includes(parseInt(id))){
+    for (square of squares) {
+        if (square.includes(parseInt(id))) {
             for (let x = 0; x < square.length; x++) document.getElementById(square[x]).style.background = "#caf2fa";
-        } 
+        }
     }
 }
 
@@ -337,23 +338,27 @@ function resoldreTaulaDificil() {
 }
 
 function mostraErrors() {
+    errors = 0;
     celda = 1;
     for (let f = 0; f < 9; f++) {
         for (let c = 0; c < 9; c++, celda++) {
             valorCelda = document.getElementById(`${celda}`).value;
-            if (valorCelda == sudokuFacil[f][c]) {
-                console.log(valorCelda,sudokuFacil[f][c]);
+            if (valorCelda == solucioFacil[f][c]) {
+                // console.log(valorCelda, sudokuFacil[f][c]);
                 document.getElementById(`${celda}`).style.background = 'white';
-            }else{
+            } else {
                 document.getElementById(`${celda}`).style.background = '#ff9d96';
+                errors++;
             }
         }
     }
+    document.getElementById('errors').innerText = `Tens ${errors} errors`;
+    
 }
 
-function stopCronometre(){
+function stopCronometre() {
     clearInterval(running);
-	running = null;
+    running = null;
 }
 
 
