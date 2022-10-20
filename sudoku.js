@@ -137,6 +137,7 @@ function mostraErrors() {
             if (valorCelda == sol[f][c]) document.getElementById(`${celda}`).style.background = 'white';
             else {
                 document.getElementById(`${celda}`).style.background = '#ff9d96';
+                document.getElementById(`${celda}`).style.animation = "fadeInCeldaIncorrecta 0.5s";
                 errors++;
             }
         }
