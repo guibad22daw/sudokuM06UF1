@@ -337,6 +337,7 @@ function resoldreTaulaDificil() {
 }
 
 function mostraErrors() {
+    let valorCelda;
     celda = 1;
     for (let f = 0; f < 9; f++) {
         for (let c = 0; c < 9; c++, celda++) {
