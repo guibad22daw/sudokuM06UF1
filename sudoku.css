@@ -112,6 +112,7 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 .errors{
     float: right;
+    font-weight: bold;
 }
 
 .numeros button{

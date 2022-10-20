@@ -33,7 +33,7 @@ window.onload = function () {
         crearTaula();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
-        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
+        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
         document.getElementById('numeros').innerHTML += `<div id="errors" class="errors"></div>`;
     }
 
@@ -45,7 +45,8 @@ window.onload = function () {
         crearTaula();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`
-        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
+        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
+        document.getElementById('numeros').innerHTML += `<div id="errors" class="errors"></div>`;
 
     }
 
@@ -57,7 +58,8 @@ window.onload = function () {
         crearTaula();
         startCronometre();
         document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
-        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
+        document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
+        document.getElementById('numeros').innerHTML += `<div id="errors" class="errors"></div>`;
     }
 }
 
@@ -140,7 +142,7 @@ function mostraErrors() {
         }
     }
     document.getElementById('errors').innerHTML = ''
-    document.getElementById('errors').innerHTML = `<h6>Tens ${errors} errors</h6>`;
+    document.getElementById('errors').innerHTML = `<br/><label class="errors">Tens ${errors} errors<label>`;
 }
 
 function startCronometre() {
