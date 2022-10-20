@@ -134,9 +134,9 @@ window.onload = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Fàcil</h3>';
         document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
-        crearTaulaFacil();
+        crearTaula();
         startCronometre();
-        document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaFacil()">Solució</button>`;
+        document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
         document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
         document.getElementById('numeros').innerHTML += `<div id="errors" class="errors"></div>`;
     }
@@ -146,9 +146,9 @@ window.onload = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Intermig</h3>';
         document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
-        crearTaulaIntermig();
+        crearTaula();
         startCronometre();
-        document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaIntermig()">Solució</button>`
+        document.getElementById('numeros').innerHTML = `<button style="margin: auto;" id="btn_facil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`
         document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
 
     }
@@ -158,111 +158,30 @@ window.onload = function () {
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
         document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
-        crearTaulaDificil();
+        crearTaula();
         startCronometre();
-        document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaulaDificil()">Solució</button>`;
+        document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
         document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="mostraErrors()">Mostrar errors</button>`;
     }
 }
 
-
-let celda = 1;
-function crearTaulaFacil() {
+let celda=1;
+function crearTaula(){
     celda = 1;
+    if (botoFacil) {sud=sudokuFacil} else if (botoIntermig) {sud=sudokuIntermig} else if (botoDificil) {sud=sudokuDificil}
     for (let f = 0; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
         for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
             columna.innerHTML = celdaCorrecta(celda);
-            document.getElementById(`${celda}`).value = sudokuFacil[f][c];
+            document.getElementById(`${celda}`).value = sud[f][c];
             if (document.getElementById(`${celda}`).value == "-") {
                 document.getElementById(`${celda}`).value = null;
                 columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintarTaula(id)'>`;
             }
         }
     }
-}
-
-function crearTaulaIntermig() {
-    celda = 1;
-    for (let f = 0; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++, celda++) {
-            let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(celda);
-            document.getElementById(`${celda}`).value = sudokuIntermig[f][c];
-            if (document.getElementById(`${celda}`).value == "-") {
-                document.getElementById(`${celda}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintarTaula(id)' >`;
-            }
-        }
-    }
-}
-
-function crearTaulaDificil() {
-    celda = 1;
-    for (let f = 0; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++, celda++) {
-            let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(celda);
-            document.getElementById(`${celda}`).value = sudokuDificil[f][c];
-            if (document.getElementById(`${celda}`).value == "-") {
-                document.getElementById(`${celda}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintarTaula(id)'>`;
-            }
-        }
-    }
-}
-
-function startCronometre() {
-    let minuts = 0, segons = 0, centesimes = 0;
-
-    const idMinuts = document.getElementById("minuts");
-    const idSegons = document.getElementById("segons");
-
-    const sumarMinut = () => {
-
-        if (minuts < 99) minuts++;
-    }
-
-    const sumarSegon = () => {
-
-        if (segons === 59) {
-            segons = 0;
-            sumarMinut();
-        }
-        else {
-            segons++;
-        }
-    }
-
-    const incrementar = () => {
-
-        if (centesimes === 99) {
-            centesimes = 0;
-            sumarSegon();
-        }
-        else {
-            centesimes++;
-        }
-
-        if (segons < 10) {
-            idSegons.innerHTML = `0${segons}`;
-        } else {
-            idSegons.innerHTML = segons;
-        }
-
-        if (minuts < 10) {
-            idMinuts.innerHTML = `0${minuts}`;
-        }
-
-    }
-
-    running = setInterval(incrementar, 10);
 }
 
 function pintarTaula(id) {
@@ -293,8 +212,9 @@ function pintarQuadrant(id) {
     }
 }
 
-function resoldreTaulaFacil() {
+function resoldreTaula() {
     stopCronometre()
+    if (botoFacil) {res=solucioFacil} else if (botoIntermig) {res=solucioIntermig} else if (botoDificil) {res=solucioDificil}
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
@@ -303,39 +223,7 @@ function resoldreTaulaFacil() {
             let columna = fila.insertCell(c);
             columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
             columna.innerHTML = celdaCorrecta(celda);
-            document.getElementById(`${celda}`).value = solucioFacil[f][c];
-
-        }
-    }
-}
-
-function resoldreTaulaIntermig() {
-    stopCronometre()
-    document.getElementById("taulaSudoku").innerHTML = '';
-    for (let f = 0, celda = 1; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++, celda++) {
-            let columna = fila.insertCell(c);
-            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
-            columna.innerHTML = celdaCorrecta(celda);
-            document.getElementById(`${celda}`).value = solucioIntermig[f][c];
-
-        }
-    }
-}
-
-function resoldreTaulaDificil() {
-    stopCronometre()
-    document.getElementById("taulaSudoku").innerHTML = '';
-    for (let f = 0, celda = 1; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
-        for (let c = 0; c < 9; c++, celda++) {
-            let columna = fila.insertCell(c);
-            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
-            columna.innerHTML = celdaCorrecta(celda);
-            document.getElementById(`${celda}`).value = solucioDificil[f][c];
+            document.getElementById(`${celda}`).value = res[f][c];
 
         }
     }
@@ -357,6 +245,25 @@ function mostraErrors() {
     }
     document.getElementById('errors').innerHTML = ''
     document.getElementById('errors').innerHTML = `<h6>Tens ${errors} errors</h6>`;
+}
+
+function startCronometre() {
+    let minuts = 0, segons = 0, centesimes = 0;
+    const idMinuts = document.getElementById("minuts");
+    const idSegons = document.getElementById("segons");
+    const sumarMinut = () => {if (minuts < 99) minuts++;}
+    const sumarSegon = () => {
+        if (segons === 59) {segons = 0; sumarMinut();}
+        else segons++;
+    }
+    const incrementar = () => {
+        if (centesimes === 99) {centesimes = 0;sumarSegon();}
+        else centesimes++;
+        if (segons < 10) idSegons.innerHTML = `0${segons}`;
+        else idSegons.innerHTML = segons;
+        if (minuts < 10) idMinuts.innerHTML = `0${minuts}`;
+    }
+    running = setInterval(incrementar, 10);
 }
 
 function stopCronometre() {
