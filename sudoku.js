@@ -1,14 +1,16 @@
-let numSeleccionat = null;
-let tileSelected = null;
-let errors = 0;
+let sudokuFacil1 = ["---26-7-1","68--7--9-","19---45--","82-1---4-","--46-29--","-5---3-28","--93---74","-4--5--36","7-3-18---"];
+let sudokuFacil2 = ["984-31-72","61---7---","257--98--","3---6--1-","---37-92-","--9--5---","-3---6---","-45-18-96","1967--28-"];
+let sudokuIntermig1 = ["-2-6-89--","58---97--","----4----","37----5--","6---8---4","--8-----3","----2----","--98---36","7--3-6-9-"];
+let sudokuIntermig2 = ["-4326----","--6-----3","-891-5---","-3-6----4","47--1--38","8----4-7-","---7-618-","1-----9--","----9132-"];
+let sudokuDificil1 = ["-5-3--1--","--6----5-","---8-----","-6-51----","4-------2","-----9---","--279---3","-----69--","-7---8---"];
+let sudokuDificil2 = ["-2-------","---6----3","-74-8----","-----3--2","-8--4--1-","6--5-----","----1-78-","5----9---","-------4-"];
 
-let sudokuFacil = ["---26-7-1","68--7--9-","19---45--","82-1---4-","--46-29--","-5---3-28","--93---74","-4--5--36","7-3-18---"];
-let sudokuIntermig = ["-2-6-89--","58---97--","----4----","37----5--","6---8---4","--8-----3","----2----","--98---36","7--3-6-9-"];
-let sudokuDificil = ["-5-3--1--","--6----5-","---8-----","-6-51----","4-------2","-----9---","--279---3","-----69--","-7---8---"];
-
-let solucioFacil = ["435269781","682571493","197834562","826195347","374682915","951743628","519326874","248957136","763418259"];
-let solucioIntermig = ["123678945","584239761","967145328","372461589","691583274","458792613","836924157","219857436","745316892"];
-let solucioDificil = ["854372196","326941758","917865234","268517349","491683572","735429861","582794613","143256987","679138425"];
+let solucioFacil1 = ["435269781","682571493","197834562","826195347","374682915","951743628","519326874","248957136","763418259"];
+let solucioFacil2 = ["984531672","613827549","257649831","378962415","561374928","429185763","832496157","745218396","196753284"];
+let solucioIntermig1 = ["123678945","584239761","967145328","372461589","691583274","458792613","836924157","219857436","745316892"];
+let solucioIntermig2 = ["543267891","216849753","789135462","932678514","475912638","861354279","394726185","127583946","658491327"];
+let solucioDificil1 = ["854372196","326941758","917865234","268517349","491683572","735429861","582794613","143256987","679138425"];
+let solucioDificil2 = ["126437958","895621473","374985126","457193862","983246517","612578394","269314785","548769231","731852649"];
 
 let square1 = [1, 2, 3, 10, 11, 12, 19, 20, 21];
 let square2 = [4, 5, 6, 13, 14, 15, 22, 23, 24];
@@ -21,7 +23,13 @@ let square8 = [58, 59, 60, 67, 68, 69, 76, 77, 78];
 let square9 = [61, 62, 63, 70, 71, 72, 79, 80, 81];
 
 let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
-let botoFacil = 0, botoIntermig = 0, botoDificil = 0;
+let sudokuFacil = [sudokuFacil1,sudokuFacil2];
+let sudokuIntermig = [sudokuIntermig1,sudokuIntermig2];
+let sudokuDificil = [sudokuDificil1,sudokuDificil2];
+let solucioFacil = [solucioFacil1,solucioFacil2];
+let solucioIntermig = [solucioIntermig1,solucioIntermig2];
+let solucioDificil = [solucioDificil1,solucioDificil2];
+let botoFacil = 0, botoIntermig = 0, botoDificil = 0, errors = 0;
 
 window.onload = function () {
 
@@ -64,9 +72,11 @@ window.onload = function () {
 }
 
 let celda=1;
+let n = 0;
 function crearTaula(){
     celda = 1;
-    if (botoFacil) {sud=sudokuFacil} else if (botoIntermig) {sud=sudokuIntermig} else if (botoDificil) {sud=sudokuDificil}
+    n = Math.floor(Math.random() * 2);
+    if (botoFacil) {sud=sudokuFacil[n]} else if (botoIntermig) {sud=sudokuIntermig[n]} else if (botoDificil) {sud=sudokuDificil[n]}
     for (let f = 0; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
@@ -112,7 +122,7 @@ function pintarQuadrant(id) {
 
 function resoldreTaula() {
     stopCronometre()
-    if (botoFacil) {res=solucioFacil} else if (botoIntermig) {res=solucioIntermig} else if (botoDificil) {res=solucioDificil}
+    if (botoFacil) {res=solucioFacil[n]} else if (botoIntermig) {res=solucioIntermig[n]} else if (botoDificil) {res=solucioDificil[n]}
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
@@ -130,7 +140,7 @@ function resoldreTaula() {
 function mostraErrors() {
     let valorCelda, sol;
     celda = 1; errors = 0;
-    if (botoFacil) {sol=solucioFacil} else if (botoIntermig) {sol=solucioIntermig} else if (botoDificil) {sol=solucioDificil}
+    if (botoFacil) {sol=solucioFacil[n]} else if (botoIntermig) {sol=solucioIntermig[n]} else if (botoDificil) {sol=solucioDificil[n]}
     for (let f = 0; f < 9; f++) {
         for (let c = 0; c < 9; c++, celda++) {
             valorCelda = document.getElementById(`${celda}`).value;
