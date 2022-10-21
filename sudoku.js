@@ -1,40 +1,40 @@
-let sudokuFacil1 = ["---26-7-1","68--7--9-","19---45--","82-1---4-","--46-29--","-5---3-28","--93---74","-4--5--36","7-3-18---"];
-let sudokuFacil2 = ["984-31-72","61---7---","257--98--","3---6--1-","---37-92-","--9--5---","-3---6---","-45-18-96","1967--28-"];
-let sudokuFacil3 = ["--16-935-","-------9-","-9-5-3--4","1-6--42-3","---------","8-91--5-6","3--4-5-2-","67-------","--58-27--"];
-let sudokuIntermig1 = ["-2-6-89--","58---97--","----4----","37----5--","6---8---4","--8-----3","----2----","--98---36","7--3-6-9-"];
-let sudokuIntermig2 = ["-4326----","--6-----3","-891-5---","-3-6----4","47--1--38","8----4-7-","---7-618-","1-----9--","----9132-"];
-let sudokuIntermig3 = ["8-69----4","--------7","973-5--8-","-2-3-1---","3---7---2","---4-2-1-","-6--2-7-1","7-----9--","2--7--4-8"]
-let sudokuDificil1 = ["-5-3--1--","--6----5-","---8-----","-6-51----","4-------2","-----9---","--279---3","-----69--","-7---8---"];
-let sudokuDificil2 = ["-2-------","---6----3","-74-8----","-----3--2","-8--4--1-","6--5-----","----1-78-","5----9---","-------4-"];
-let sudokuDificil3 = ["5--9---6-","----8-42-","7-8--69--","--5-----6","-6--3--4-","1-----5--","-826--3--","65--4----","-----56-8"];
+let sudokuFacil1 = ["---26-7-1", "68--7--9-", "19---45--", "82-1---4-", "--46-29--", "-5---3-28", "--93---74", "-4--5--36", "7-3-18---"];
+let sudokuFacil2 = ["984-31-72", "61---7---", "257--98--", "3---6--1-", "---37-92-", "--9--5---", "-3---6---", "-45-18-96", "1967--28-"];
+let sudokuFacil3 = ["--16-935-", "-------9-", "-9-5-3--4", "1-6--42-3", "---------", "8-91--5-6", "3--4-5-2-", "67-------", "--58-27--"];
+let sudokuIntermig1 = ["-2-6-89--", "58---97--", "----4----", "37----5--", "6---8---4", "--8-----3", "----2----", "--98---36", "7--3-6-9-"];
+let sudokuIntermig2 = ["-4326----", "--6-----3", "-891-5---", "-3-6----4", "47--1--38", "8----4-7-", "---7-618-", "1-----9--", "----9132-"];
+let sudokuIntermig3 = ["8-69----4", "--------7", "973-5--8-", "-2-3-1---", "3---7---2", "---4-2-1-", "-6--2-7-1", "7-----9--", "2--7--4-8"]
+let sudokuDificil1 = ["-5-3--1--", "--6----5-", "---8-----", "-6-51----", "4-------2", "-----9---", "--279---3", "-----69--", "-7---8---"];
+let sudokuDificil2 = ["-2-------", "---6----3", "-74-8----", "-----3--2", "-8--4--1-", "6--5-----", "----1-78-", "5----9---", "-------4-"];
+let sudokuDificil3 = ["5--9---6-", "----8-42-", "7-8--69--", "--5-----6", "-6--3--4-", "1-----5--", "-826--3--", "65--4----", "-----56-8"];
 
-let solucioFacil1 = ["435269781","682571493","197834562","826195347","374682915","951743628","519326874","248957136","763418259"];
-let solucioFacil2 = ["984531672","613827549","257649831","378962415","561374928","429185763","832496157","745218396","196753284"];
-let solucioFacil3 = ["481629357","563748192","297513864","156984273","734256918","829137546","318475629","672391485","945862731"];
-let solucioIntermig1 = ["123678945","584239761","967145328","372461589","691583274","458792613","836924157","219857436","745316892"];
-let solucioIntermig2 = ["543267891","216849753","789135462","932678514","475912638","861354279","394726185","127583946","658491327"];
-let solucioIntermig3 = ["856917234","142638597","973254186","524361879","318579642","697482315","469823751","785146923","231795438"];
-let solucioDificil1 = ["854372196","326941758","917865234","268517349","491683572","735429861","582794613","143256987","679138425"];
-let solucioDificil2 = ["126437958","895621473","374985126","457193862","983246517","612578394","269314785","548769231","731852649"];
-let solucioDificil3 = ["514923867","396187425","728456931","235814796","867539142","149762583","982671354","651348279","473295618"];
+let solucioFacil1 = ["435269781", "682571493", "197834562", "826195347", "374682915", "951743628", "519326874", "248957136", "763418259"];
+let solucioFacil2 = ["984531672", "613827549", "257649831", "378962415", "561374928", "429185763", "832496157", "745218396", "196753284"];
+let solucioFacil3 = ["481629357", "563748192", "297513864", "156984273", "734256918", "829137546", "318475629", "672391485", "945862731"];
+let solucioIntermig1 = ["123678945", "584239761", "967145328", "372461589", "691583274", "458792613", "836924157", "219857436", "745316892"];
+let solucioIntermig2 = ["543267891", "216849753", "789135462", "932678514", "475912638", "861354279", "394726185", "127583946", "658491327"];
+let solucioIntermig3 = ["856917234", "142638597", "973254186", "524361879", "318579642", "697482315", "469823751", "785146923", "231795438"];
+let solucioDificil1 = ["854372196", "326941758", "917865234", "268517349", "491683572", "735429861", "582794613", "143256987", "679138425"];
+let solucioDificil2 = ["126437958", "895621473", "374985126", "457193862", "983246517", "612578394", "269314785", "548769231", "731852649"];
+let solucioDificil3 = ["514923867", "396187425", "728456931", "235814796", "867539142", "149762583", "982671354", "651348279", "473295618"];
 
 let square1 = [1, 2, 3, 10, 11, 12, 19, 20, 21];
 let square2 = [4, 5, 6, 13, 14, 15, 22, 23, 24];
 let square3 = [7, 8, 9, 16, 17, 18, 25, 26, 27];
 let square4 = [28, 29, 30, 37, 38, 39, 46, 47, 48];
 let square5 = [31, 32, 33, 40, 41, 42, 49, 50, 51];
-let square6 = [34, 35, 36, 43, 44, 45,52, 53, 54];
-let square7 = [55, 56, 57, 64, 65, 66,73, 74, 75];
+let square6 = [34, 35, 36, 43, 44, 45, 52, 53, 54];
+let square7 = [55, 56, 57, 64, 65, 66, 73, 74, 75];
 let square8 = [58, 59, 60, 67, 68, 69, 76, 77, 78];
 let square9 = [61, 62, 63, 70, 71, 72, 79, 80, 81];
 
 let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
-let sudokuFacil = [sudokuFacil1,sudokuFacil2,sudokuFacil3];
-let sudokuIntermig = [sudokuIntermig1,sudokuIntermig2,sudokuIntermig3];
-let sudokuDificil = [sudokuDificil1,sudokuDificil2,sudokuDificil3];
-let solucioFacil = [solucioFacil1,solucioFacil2,solucioFacil3];
-let solucioIntermig = [solucioIntermig1,solucioIntermig2,solucioIntermig3];
-let solucioDificil = [solucioDificil1,solucioDificil2,solucioDificil3];
+let sudokuFacil = [sudokuFacil1, sudokuFacil2, sudokuFacil3];
+let sudokuIntermig = [sudokuIntermig1, sudokuIntermig2, sudokuIntermig3];
+let sudokuDificil = [sudokuDificil1, sudokuDificil2, sudokuDificil3];
+let solucioFacil = [solucioFacil1, solucioFacil2, solucioFacil3];
+let solucioIntermig = [solucioIntermig1, solucioIntermig2, solucioIntermig3];
+let solucioDificil = [solucioDificil1, solucioDificil2, solucioDificil3];
 let botoFacil = 0, botoIntermig = 0, botoDificil = 0, errors = 0;
 
 window.onload = function () {
@@ -67,12 +67,12 @@ window.onload = function () {
     }
 }
 
-let celda=1;
+let celda = 1;
 let n = 0;
-function crearTaula(){
+function crearTaula() {
     celda = 1;
     n = Math.floor(Math.random() * 3);
-    if (botoFacil) {sud=sudokuFacil[n]} else if (botoIntermig) {sud=sudokuIntermig[n]} else if (botoDificil) {sud=sudokuDificil[n]}
+    if (botoFacil) { sud = sudokuFacil[n] } else if (botoIntermig) { sud = sudokuIntermig[n] } else if (botoDificil) { sud = sudokuDificil[n] }
     for (let f = 0; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
         let fila = tabla.insertRow(f);
@@ -118,7 +118,7 @@ function pintarQuadrant(id) {
 
 function resoldreTaula() {
     stopCronometre()
-    if (botoFacil) {res=solucioFacil[n]} else if (botoIntermig) {res=solucioIntermig[n]} else if (botoDificil) {res=solucioDificil[n]}
+    if (botoFacil) { res = solucioFacil[n] } else if (botoIntermig) { res = solucioIntermig[n] } else if (botoDificil) { res = solucioDificil[n] }
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
         let tabla = document.getElementById("taulaSudoku");
@@ -136,7 +136,7 @@ function resoldreTaula() {
 function mostraErrors() {
     let valorCelda, sol;
     celda = 1; errors = 0;
-    if (botoFacil) {sol=solucioFacil[n]} else if (botoIntermig) {sol=solucioIntermig[n]} else if (botoDificil) {sol=solucioDificil[n]}
+    if (botoFacil) { sol = solucioFacil[n] } else if (botoIntermig) { sol = solucioIntermig[n] } else if (botoDificil) { sol = solucioDificil[n] }
     for (let f = 0; f < 9; f++) {
         for (let c = 0; c < 9; c++, celda++) {
             valorCelda = document.getElementById(`${celda}`).value;
@@ -148,8 +148,12 @@ function mostraErrors() {
             }
         }
     }
-    document.getElementById('errors').innerHTML = ''
-    document.getElementById('errors').innerHTML = `<br/><label class="errors">Tens ${errors} errors<label>`;
+    if (document.getElementById('errors')) {
+        document.getElementById('errors').innerHTML = ''
+        document.getElementById('numeros').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
+    } else {
+        document.getElementById('numeros').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
+    }
 }
 
 function startCronometre() {
@@ -157,13 +161,13 @@ function startCronometre() {
     let minuts = 0, segons = 0, centesimes = 0;
     const idMinuts = document.getElementById("minuts");
     const idSegons = document.getElementById("segons");
-    const sumarMinut = () => {if (minuts < 99) minuts++;}
+    const sumarMinut = () => { if (minuts < 99) minuts++; }
     const sumarSegon = () => {
-        if (segons === 59) {segons = 0; sumarMinut();}
+        if (segons === 59) { segons = 0; sumarMinut(); }
         else segons++;
     }
     const incrementar = () => {
-        if (centesimes === 99) {centesimes = 0;sumarSegon();}
+        if (centesimes === 99) { centesimes = 0; sumarSegon(); }
         else centesimes++;
         if (segons < 10) idSegons.innerHTML = `0${segons}`;
         else idSegons.innerHTML = segons;
@@ -180,7 +184,6 @@ function stopCronometre() {
 function mostraBottom() {
     document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
     document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
-    document.getElementById('numeros').innerHTML += `<div id="errors" class="errors"></div>`;
 }
 
 

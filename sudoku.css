@@ -27,6 +27,7 @@
     border: 4px solid black;
     margin-top: 0px;
     font-size: 23px;
+    margin-bottom: 20px;
 
 }
 
@@ -87,19 +88,23 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 .numeros{
     margin-top: 20px;
+    margin: auto;
     text-align: center;
-    display: inline-block;
-    margin-left: 41.5%; 
-}
+    display: flex;
+    width: 450px;
 
-.errors{
-    float: right;
-    font-weight: bold;
 }
 
 .numeros button{
-    margin-left: 10px;
+    margin: auto;
 }
+
+.errors{
+    font-weight: bold;
+}
+
+
+
 
 .top {
     margin: auto;
