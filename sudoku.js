@@ -65,6 +65,14 @@ window.onload = function () {
         startCronometre();
         mostraBottom();
     }
+    document.getElementById('btn_').onclick = function () {
+        botoFacil = 0; botoDificil = 1; botoIntermig = 0;
+        document.getElementById("taulaSudoku").innerHTML = '';
+        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
+        crearTaula();
+        startCronometre();
+        mostraBottom();
+    }
 }
 
 let celda = 1;
@@ -86,6 +94,7 @@ function crearTaula() {
             }
         }
     }
+    document.getElementById('errors').innerText = '';
 }
 
 function pintarTaula(id) {
@@ -108,7 +117,7 @@ function pintarFilaColumna(casellaSeleccionada, i) {
     }
 }
 
-function pintarQuadrant(id) {
+function pintarQuadrant(id) {   
     for (square of squares) {
         if (square.includes(parseInt(id))) {
             for (let x = 0; x < square.length; x++) document.getElementById(square[x]).style.background = "#caf2fa";
@@ -140,7 +149,12 @@ function mostraErrors() {
     for (let f = 0; f < 9; f++) {
         for (let c = 0; c < 9; c++, celda++) {
             valorCelda = document.getElementById(`${celda}`).value;
-            if (valorCelda == sol[f][c]) document.getElementById(`${celda}`).style.background = 'white';
+            if (valorCelda == sol[f][c]){
+                document.getElementById(`${celda}`).style.background = 'white';
+                document.getElementById(`${celda}`).style.fontWeight = 'bold';
+                document.getElementById(`${celda}`).style.color = 'black';
+                document.getElementById(`${celda}`).disabled = true;
+            } 
             else {
                 document.getElementById(`${celda}`).style.background = '#ff9d96';
                 document.getElementById(`${celda}`).style.animation = "fadeInCeldaIncorrecta 0.5s";
@@ -149,10 +163,9 @@ function mostraErrors() {
         }
     }
     if (document.getElementById('errors')) {
-        document.getElementById('errors').innerHTML = ''
-        document.getElementById('numeros').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
+        document.getElementById('errors').innerText = `Tens ${errors} errors`;
     } else {
-        document.getElementById('numeros').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
+        document.getElementById('errors').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
     }
 }
 
@@ -182,8 +195,8 @@ function stopCronometre() {
 }
 
 function mostraBottom() {
-    document.getElementById('numeros').innerHTML = `<button id="btn_dificil" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
-    document.getElementById('numeros').innerHTML += `<button id="btn_dificil" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
+    document.getElementById('numeros').innerHTML = `<button id="btn_solucio" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
+    document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
 }
 
 
