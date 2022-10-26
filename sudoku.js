@@ -18,15 +18,9 @@ let solucioDificil1 = ["854372196", "326941758", "917865234", "268517349", "4916
 let solucioDificil2 = ["126437958", "895621473", "374985126", "457193862", "983246517", "612578394", "269314785", "548769231", "731852649"];
 let solucioDificil3 = ["514923867", "396187425", "728456931", "235814796", "867539142", "149762583", "982671354", "651348279", "473295618"];
 
-let square1 = [1, 2, 3, 10, 11, 12, 19, 20, 21];
-let square2 = [4, 5, 6, 13, 14, 15, 22, 23, 24];
-let square3 = [7, 8, 9, 16, 17, 18, 25, 26, 27];
-let square4 = [28, 29, 30, 37, 38, 39, 46, 47, 48];
-let square5 = [31, 32, 33, 40, 41, 42, 49, 50, 51];
-let square6 = [34, 35, 36, 43, 44, 45, 52, 53, 54];
-let square7 = [55, 56, 57, 64, 65, 66, 73, 74, 75];
-let square8 = [58, 59, 60, 67, 68, 69, 76, 77, 78];
-let square9 = [61, 62, 63, 70, 71, 72, 79, 80, 81];
+for (let i = 1, x=0; i <= 3; i++,x+=3) this["square"+i] = [1+x, 2+x, 3+x, 10+x, 11+x, 12+x, 19+x, 20+x, 21+x];
+for (let i = 4, x=0; i <= 6; i++,x+=3) this["square"+i] = [28+x, 29+x, 30+x, 37+x, 38+x, 39+x, 46+x, 47+x, 48+x];
+for (let i = 7, x=0; i <= 9; i++,x+=3) this["square"+i] = [55+x, 56+x, 57+x, 64+x, 65+x, 66+x, 73+x, 74+x, 75+x];
 
 let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
 let sudokuFacil = [sudokuFacil1, sudokuFacil2, sudokuFacil3];
@@ -58,14 +52,6 @@ window.onload = function () {
     }
 
     document.getElementById('btn_dificil').onclick = function () {
-        botoFacil = 0; botoDificil = 1; botoIntermig = 0;
-        document.getElementById("taulaSudoku").innerHTML = '';
-        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
-        crearTaula();
-        startCronometre();
-        mostraBottom();
-    }
-    document.getElementById('btn_').onclick = function () {
         botoFacil = 0; botoDificil = 1; botoIntermig = 0;
         document.getElementById("taulaSudoku").innerHTML = '';
         document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
@@ -127,6 +113,7 @@ function pintarQuadrant(id) {
 
 function resoldreTaula() {
     stopCronometre()
+    document.getElementById('errors').innerText = '';
     if (botoFacil) { res = solucioFacil[n] } else if (botoIntermig) { res = solucioIntermig[n] } else if (botoDificil) { res = solucioDificil[n] }
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
@@ -199,19 +186,6 @@ function mostraBottom() {
     document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
 }
 
-
 function celdaCorrecta(celda) {
     return `<input type='text' maxLength='1' class='celdaCorrecta' id='${celda}' disabled>`;
-}
-
-function celdaIncorrecta(celda) {
-    return `<input type='text' maxLength='1' class='celdaIncorrecta' id='${celda}'>`;
-}
-
-function celdaNormal(celda) {
-    return `<input type='text' maxLength='1' class='celda' id='${celda}'>`;
-}
-
-function celdaSeleccionada(celda) {
-    return `<input type='text' maxLength='1' class='celdaSeleccionada' id='${celda}'>`;
 }

@@ -1,7 +1,10 @@
 * {
-    margin: 10px;
+    margin: 10px;    
 }
 
+body {
+    background-color: #caeffa;
+}
 .exempleSudoku{
     margin: auto;
     text-align: center;
@@ -11,6 +14,7 @@
 .exempleSudoku p{
     padding: 10px;
     font-weight: bold;
+    z-index: 9999;
 }
 
 
@@ -68,6 +72,7 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 .dropdown-menu {
     border: none;
+    background-color: #caeffa;
 }
 
 .dropdown-menu button {
