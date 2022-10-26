@@ -99,7 +99,9 @@ function pintarFilaColumna(casellaSeleccionada, i) {
     } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
         document.getElementById(i).style.background = "#caf2fa";
     } else {
-        document.getElementById(i).style.background = "white";
+        if(document.getElementById(i).disabled) document.getElementById(i).style.background = "#d4d4d4";
+        else document.getElementById(i).style.background = "white";
+        
     }
 }
 
@@ -122,7 +124,7 @@ function resoldreTaula() {
         for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
             columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
-            columna.innerHTML = celdaCorrecta(celda);
+            columna.innerHTML = celdaResolta(celda);
             document.getElementById(`${celda}`).value = res[f][c];
 
         }
@@ -188,4 +190,8 @@ function mostraBottom() {
 
 function celdaCorrecta(celda) {
     return `<input type='text' maxLength='1' class='celdaCorrecta' id='${celda}' disabled>`;
+}
+
+function celdaResolta(celda) {
+    return `<input type='text' maxLength='1' class='celdaResolta' id='${celda}' disabled>`;
 }
