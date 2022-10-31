@@ -2,19 +2,35 @@
     margin: 10px;    
 }
 
-body {
+/* body {
     background-color: white;
+} */
+
+.bg {
+    background-image: url('./windowsxp.jpg');
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow-y: scroll;    
+    top: -10px;
+    left: -10px;
+    right: 0px;
 }
+
 .exempleSudoku{
     margin: auto;
     text-align: center;
     margin: 15px;
 }
 
-.exempleSudoku p{
+.introduccio, .comenzar {
     padding: 10px;
-    font-weight: bold;
-    z-index: 9999;
+    color: white;
+    text-shadow: 0 3px 10px black;
 }
 
 
@@ -71,8 +87,9 @@ td:nth-of-type(3),td:nth-of-type(6){
 }
 
 .dropdown-menu {
+    text-align: center;
     border: none;
-    background-color: white;
+    background-color: transparent;
 }
 
 .dropdown-menu button {
@@ -81,7 +98,7 @@ td:nth-of-type(3),td:nth-of-type(6){
 }
 
 .celdaCorrecta {
-    background-color:#d4d4d4;
+    background-color:white;
     font-weight: bold;
     color:black;
     width: 50px;
@@ -102,7 +119,7 @@ td:nth-of-type(3),td:nth-of-type(6){
     border: 1px solid black;
 } 
 
-.numeros{
+.numeros {
     margin: auto;
     margin-top: 20px;
     text-align: center;
@@ -113,10 +130,12 @@ td:nth-of-type(3),td:nth-of-type(6){
     margin-left: 20px;
 }
 
-.errors{
+.errors {
     text-align: center;
-    font-weight: bold;
+    font-weight: 200;
     height: 20px;
+    color: white;
+    text-shadow: 0 3px 10px black;
 }
 
 .top {
@@ -126,6 +145,8 @@ td:nth-of-type(3),td:nth-of-type(6){
     height: 50px;
     display: flex;
     justify-content: space-between;
+    color: white;
+    text-shadow: 0 3px 10px black;
 }
 
 .dificultat{

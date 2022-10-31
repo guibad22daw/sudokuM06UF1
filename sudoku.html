@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="sudoku.css">
 
 <body>
+    <div class="bg">
     <div class="container">
         <!-- Introducció -->
         <div class="introduccio">
@@ -37,9 +38,12 @@
                 Selecció de dificultat
             </button>
             <ul class="dropdown-menu">
-                <a href="#numeros"><button type="button" class="btn btn-info" id="btn_facil" tabindex="-1">Fàcil</button></a>
-                <a href="#numeros"><button type="button" class="btn btn-warning" id="btn_intermig" tabindex="-1">Intermig</button></a>
-                <a href="#numeros"><button type="button" class="btn btn-danger" id="btn_dificil" tabindex="-1">Difícil</button></a>
+                <a href="#numeros"><button type="button" class="btn btn-info" id="btn_facil"
+                        tabindex="-1">Fàcil</button></a>
+                <a href="#numeros"><button type="button" class="btn btn-warning" id="btn_intermig"
+                        tabindex="-1">Intermig</button></a>
+                <a href="#numeros"><button type="button" class="btn btn-danger" id="btn_dificil"
+                        tabindex="-1">Difícil</button></a>
             </ul>
         </div>
         <div id="top" class="top">
@@ -48,6 +52,7 @@
         <table id="taulaSudoku"></table>
         <div id="numeros" class="numeros"></div>
         <div id="errors" class="errors"></div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

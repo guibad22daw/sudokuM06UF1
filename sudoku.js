@@ -115,7 +115,8 @@ function pintarQuadrant(id) {
 
 function resoldreTaula() {
     stopCronometre()
-    document.getElementById('errors').innerText = '';
+    if(minuts == 0) document.getElementById('errors').innerText = `Felicitats! Has completat el sudoku en ${segons} segon/s.`;
+    else document.getElementById('errors').innerHTML = `Felicitats! Has completat el sudoku en ${minuts} minut/s i ${segons} segon/s.`;
     if (botoFacil) { res = solucioFacil[n] } else if (botoIntermig) { res = solucioIntermig[n] } else if (botoDificil) { res = solucioDificil[n] }
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
@@ -158,9 +159,11 @@ function mostraErrors() {
     }
 }
 
+let minuts = 0, segons = 0, centesimes = 0, running = 0;
 function startCronometre() {
+    clearInterval(running);
+    minuts = 0, segons = 0, centesimes = 0;
     document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
-    let minuts = 0, segons = 0, centesimes = 0;
     const idMinuts = document.getElementById("minuts");
     const idSegons = document.getElementById("segons");
     const sumarMinut = () => { if (minuts < 99) minuts++; }
