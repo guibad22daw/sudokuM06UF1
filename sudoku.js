@@ -99,7 +99,7 @@ function pintarFilaColumna(casellaSeleccionada, i) {
     } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
         document.getElementById(i).style.background = "#caf2fa";
     } else {
-        if(document.getElementById(i).disabled) document.getElementById(i).style.background = "#d4d4d4";
+        if(document.getElementById(i).disabled) document.getElementById(i).style.background = "white";
         else document.getElementById(i).style.background = "white";
         
     }
