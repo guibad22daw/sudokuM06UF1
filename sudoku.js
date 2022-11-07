@@ -114,7 +114,8 @@ function pintarQuadrant(id) {
 }
 
 function resoldreTaula() {
-    stopCronometre()
+    stopCronometre();
+    document.getElementById('numeros').innerHTML = '';
     if(minuts == 0) document.getElementById('errors').innerText = `Felicitats! Has completat el sudoku en ${segons} segon/s.`;
     else document.getElementById('errors').innerHTML = `Felicitats! Has completat el sudoku en ${minuts} minut/s i ${segons} segon/s.`;
     if (botoFacil) { res = solucioFacil[n] } else if (botoIntermig) { res = solucioIntermig[n] } else if (botoDificil) { res = solucioDificil[n] }
@@ -187,8 +188,8 @@ function stopCronometre() {
 }
 
 function mostraBottom() {
-    document.getElementById('numeros').innerHTML = `<button id="btn_solucio" type="button" class="btn btn-outline-success" onclick="resoldreTaula()">Solució</button>`;
-    document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-outline-danger" onclick="mostraErrors()">Mostrar errors</button>`;
+    document.getElementById('numeros').innerHTML = `<button id="btn_solucio" type="button" class="btn btn-success" onclick="resoldreTaula()">Solució</button>`;
+    document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-danger" onclick="mostraErrors()">Mostrar errors</button>`;
 }
 
 function celdaCorrecta(celda) {
