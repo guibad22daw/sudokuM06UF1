@@ -1,4 +1,4 @@
-// Comencem defininint tant els sudokus predeterminats com les solucions
+// Comencem defininint tant els sudokus predeterminats com les solucions mitjançant arrays
 let sudokuFacil1 = ["---26-7-1", "68--7--9-", "19---45--", "82-1---4-", "--46-29--", "-5---3-28", "--93---74", "-4--5--36", "7-3-18---"];
 let sudokuFacil2 = ["984-31-72", "61---7---", "257--98--", "3---6--1-", "---37-92-", "--9--5---", "-3---6---", "-45-18-96", "1967--28-"];
 let sudokuFacil3 = ["--16-935-", "-------9-", "-9-5-3--4", "1-6--42-3", "---------", "8-91--5-6", "3--4-5-2-", "67-------", "--58-27--"];
@@ -19,11 +19,12 @@ let solucioDificil1 = ["854372196", "326941758", "917865234", "268517349", "4916
 let solucioDificil2 = ["126437958", "895621473", "374985126", "457193862", "983246517", "612578394", "269314785", "548769231", "731852649"];
 let solucioDificil3 = ["514923867", "396187425", "728456931", "235814796", "867539142", "149762583", "982671354", "651348279", "473295618"];
 
-// Mitjançant bucles "for", creem variables del 1 al 9 per cada quadrant que hi ha que emmagatzemen les 9 celes que te cada quadrant.
+// Mitjançant bucles "for", creem arrays del 1 al 9 (que són la quantitat de quadrants que hi ha). Per cada quadrant que hi ha que emmagatzemen la posició de les celes que te cada quadrant.
 for (let i = 1, x=0; i <= 3; i++,x+=3) this["square"+i] = [1+x, 2+x, 3+x, 10+x, 11+x, 12+x, 19+x, 20+x, 21+x];
 for (let i = 4, x=0; i <= 6; i++,x+=3) this["square"+i] = [28+x, 29+x, 30+x, 37+x, 38+x, 39+x, 46+x, 47+x, 48+x];
 for (let i = 7, x=0; i <= 9; i++,x+=3) this["square"+i] = [55+x, 56+x, 57+x, 64+x, 65+x, 66+x, 73+x, 74+x, 75+x];
 
+// Declarem arrays de variables per optimitzar el codi
 let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
 let sudokuFacil = [sudokuFacil1, sudokuFacil2, sudokuFacil3];
 let sudokuIntermig = [sudokuIntermig1, sudokuIntermig2, sudokuIntermig3];
@@ -34,7 +35,7 @@ let solucioDificil = [solucioDificil1, solucioDificil2, solucioDificil3];
 let botoFacil = 0, botoIntermig = 0, botoDificil = 0, errors = 0;
 
 window.onload = function () {
-
+    
     document.getElementById('btn_facil').onclick = function () {
         botoFacil = 1; botoDificil = 0; botoIntermig = 0;
         document.getElementById("taulaSudoku").innerHTML = '';

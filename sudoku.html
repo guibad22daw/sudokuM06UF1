@@ -14,45 +14,47 @@
 
 <body>
     <div class="bg">
-    <div class="container">
-        <!-- Introducció -->
-        <div class="introduccio">
-            <h1>Joc del Sudoku</h1><br>
-            <h3>Que és el Sudoku:</h3>
-            <p>L'objectiu és omplir una graella de 9×9 files i columnes subdividida en 9 subgraelles de 3×3 anomenades
-                regions. Donats uns quants números inicials, l'objectiu és col·locar un número de l'1 al 9 en cada
-                cel·la de tal manera que mai coincideixin dos números iguals en cada línia horitzontal, vertical o en
-                cada regió. </p>
-        </div>
+        <div class="container">
+            <!-- Introducció -->
+            <div class="introduccio">
+                <h1>Joc del Sudoku</h1><br>
+                <h3>Que és el Sudoku:</h3>
+                <p>L'objectiu és omplir una graella de 9×9 files i columnes subdividida en 9 subgraelles de 3×3
+                    anomenades
+                    regions. Donats uns quants números inicials, l'objectiu és col·locar un número de l'1 al 9 en cada
+                    cel·la de tal manera que mai coincideixin dos números iguals en cada línia horitzontal, vertical o
+                    en
+                    cada regió. </p>
+            </div>
 
-        <!-- Comença a Jugar -->
-        <div class="comenzar">
-            <h3>Comença a Jugar!</h3>
-            <p>Abans de començar, hauràs de seleccionar la dificultad del sudoku:
-        </div>
+            <!-- Comença a Jugar -->
+            <div class="comenzar">
+                <h3>Comença a Jugar!</h3>
+                <p>Abans de començar, hauràs de seleccionar la dificultad del sudoku:
+            </div>
 
-        <!-- Selecció de dificultat-->
-        <div class="selecDif">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false" tabindex="-1">
-                Selecció de dificultat
-            </button>
-            <ul class="dropdown-menu">
-                <a href="#numeros"><button type="button" class="btn btn-info" id="btn_facil"
-                        tabindex="-1">Fàcil</button></a>
-                <a href="#numeros"><button type="button" class="btn btn-warning" id="btn_intermig"
-                        tabindex="-1">Intermig</button></a>
-                <a href="#numeros"><button type="button" class="btn btn-danger" id="btn_dificil"
-                        tabindex="-1">Difícil</button></a>
-            </ul>
+            <!-- Selecció de dificultat-->
+            <div class="selecDif">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" tabindex="-1">
+                    Selecció de dificultat
+                </button>
+                <ul class="dropdown-menu">
+                    <a href="#numeros"><button type="button" class="btn btn-info" id="btn_facil"
+                            tabindex="-1">Fàcil</button></a>
+                    <a href="#numeros"><button type="button" class="btn btn-warning" id="btn_intermig"
+                            tabindex="-1">Intermig</button></a>
+                    <a href="#numeros"><button type="button" class="btn btn-danger" id="btn_dificil"
+                            tabindex="-1">Difícil</button></a>
+                </ul>
+            </div>
+            <div id="top" class="top">
+                <h3 class="dificultat" id="dificultat"></h3>
+            </div>
+            <table id="taulaSudoku"></table>
+            <div id="numeros" class="numeros"></div>
+            <div id="errors" class="errors"></div>
         </div>
-        <div id="top" class="top">
-            <h3 class="dificultat" id="dificultat"></h3>
-        </div>
-        <table id="taulaSudoku"></table>
-        <div id="numeros" class="numeros"></div>
-        <div id="errors" class="errors"></div>
-    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
