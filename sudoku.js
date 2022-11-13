@@ -18,6 +18,7 @@ let solucioDificil1 = ["854372196", "326941758", "917865234", "268517349", "4916
 let solucioDificil2 = ["126437958", "895621473", "374985126", "457193862", "983246517", "612578394", "269314785", "548769231", "731852649"];
 let solucioDificil3 = ["514923867", "396187425", "728456931", "235814796", "867539142", "149762583", "982671354", "651348279", "473295618"];
 
+// Mitjançant bucles "for", creem variables del 1 al 9 per cada quadrant que hi ha que emmagatzemen les 9 celes que te cada quadrant.
 for (let i = 1, x=0; i <= 3; i++,x+=3) this["square"+i] = [1+x, 2+x, 3+x, 10+x, 11+x, 12+x, 19+x, 20+x, 21+x];
 for (let i = 4, x=0; i <= 6; i++,x+=3) this["square"+i] = [28+x, 29+x, 30+x, 37+x, 38+x, 39+x, 46+x, 47+x, 48+x];
 for (let i = 7, x=0; i <= 9; i++,x+=3) this["square"+i] = [55+x, 56+x, 57+x, 64+x, 65+x, 66+x, 73+x, 74+x, 75+x];
