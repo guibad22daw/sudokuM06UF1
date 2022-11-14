@@ -1,4 +1,4 @@
-// Comencem defininint tant els sudokus predeterminats com les solucions mitjançant arrays
+// Comencem defininint tant els sudokus predeterminats com les solucions mitjançant arrays.
 let sudokuFacil1 = ["---26-7-1", "68--7--9-", "19---45--", "82-1---4-", "--46-29--", "-5---3-28", "--93---74", "-4--5--36", "7-3-18---"];
 let sudokuFacil2 = ["984-31-72", "61---7---", "257--98--", "3---6--1-", "---37-92-", "--9--5---", "-3---6---", "-45-18-96", "1967--28-"];
 let sudokuFacil3 = ["--16-935-", "-------9-", "-9-5-3--4", "1-6--42-3", "---------", "8-91--5-6", "3--4-5-2-", "67-------", "--58-27--"];
@@ -24,7 +24,7 @@ for (let i = 1, x=0; i <= 3; i++,x+=3) this["square"+i] = [1+x, 2+x, 3+x, 10+x, 
 for (let i = 4, x=0; i <= 6; i++,x+=3) this["square"+i] = [28+x, 29+x, 30+x, 37+x, 38+x, 39+x, 46+x, 47+x, 48+x];
 for (let i = 7, x=0; i <= 9; i++,x+=3) this["square"+i] = [55+x, 56+x, 57+x, 64+x, 65+x, 66+x, 73+x, 74+x, 75+x];
 
-// Declarem arrays de variables per optimitzar el codi
+// Declarem arrays de variables per optimitzar el codi i altres variables que s'utilitzaran posteriorment
 let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
 let sudokuFacil = [sudokuFacil1, sudokuFacil2, sudokuFacil3];
 let sudokuIntermig = [sudokuIntermig1, sudokuIntermig2, sudokuIntermig3];
@@ -32,70 +32,60 @@ let sudokuDificil = [sudokuDificil1, sudokuDificil2, sudokuDificil3];
 let solucioFacil = [solucioFacil1, solucioFacil2, solucioFacil3];
 let solucioIntermig = [solucioIntermig1, solucioIntermig2, solucioIntermig3];
 let solucioDificil = [solucioDificil1, solucioDificil2, solucioDificil3];
-let botoFacil = 0, botoIntermig = 0, botoDificil = 0, errors = 0;
+let botoFacil = 0, botoIntermig = 0, botoDificil = 0, errors = 0,  celda = 1, n = 0;
+let dificultats = ["Fàcil","Intermig","Dificil"];
 
+// Afegim un event que s'acciona quan tots els recursos dins de la funció han acabat de carregar.
 window.onload = function () {
-    
-    document.getElementById('btn_facil').onclick = function () {
-        botoFacil = 1; botoDificil = 0; botoIntermig = 0;
-        document.getElementById("taulaSudoku").innerHTML = '';
-        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Fàcil</h3>';
-        crearTaula();
-        startCronometre();
-        mostraBottom();
+    document.getElementById('btn_facil').onclick = function () {     // Funció que s'acciona quan es prem el botó per escollir la dificultat fàcil.
+        botoFacil = 1; botoDificil = 0; botoIntermig = 0;   // Assignem una variable que ens ajudarà a optimitzar codi de forma que no haguem de crear una funció per crear la taula, resoldre-la i etc. per cada dificultat.
+        startJoc();         // S'executa una funció que conté altres funcions i codi que s'havia de repetir per cada dificultat, per això ho hem posat en una funció per fer el codi més eficient.
     }
 
     document.getElementById('btn_intermig').onclick = function () {
         botoFacil = 0; botoDificil = 0; botoIntermig = 1;
-        document.getElementById("taulaSudoku").innerHTML = '';
-        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Intermig</h3>';
-        crearTaula();
-        startCronometre();
-        mostraBottom();
+        startJoc();
     }
 
     document.getElementById('btn_dificil').onclick = function () {
         botoFacil = 0; botoDificil = 1; botoIntermig = 0;
-        document.getElementById("taulaSudoku").innerHTML = '';
-        document.getElementById("top").innerHTML = '<h3 class="dificultat" id="dificultat">Difícil</h3>';
-        crearTaula();
-        startCronometre();
-        mostraBottom();
+        startJoc();
     }
 }
 
-let celda = 1;
-let n = 0;
+ // Funció crearTaula. Genera la tula i introdueix els valors predeterminats segons la dificultat que s'hagi escollit.
 function crearTaula() {
     celda = 1;
-    n = Math.floor(Math.random() * 3);
-    if (botoFacil) { sud = sudokuFacil[n] } else if (botoIntermig) { sud = sudokuIntermig[n] } else if (botoDificil) { sud = sudokuDificil[n] }
-    for (let f = 0; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
+    n = Math.floor(Math.random() * 3);      // Generem un número aleatori entre 1 i 3. Això es deu a que hem definit tres sudokus diferents per cada nivell dificultat, de forma que no es faci repetitiu.
+    if (botoFacil) { sud = sudokuFacil[n] } else if (botoIntermig) { sud = sudokuIntermig[n] } else if (botoDificil) { sud = sudokuDificil[n] }     // Comprovem quina dificultat s'ha seleccionat
+                                                                                                                                                    // i seleccionem un sudoku aleatori de l'array de variables que hem creat
+                                                                                                                                                    // previament
+    for (let f = 0; f < 9; f++) {       // Generem un bucle que recorre les 9 files del sudoku
+        let taula = document.getElementById("taulaSudoku");
+        let fila = taula.insertRow(f);
         for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
             columna.innerHTML = celdaCorrecta(celda);
             document.getElementById(`${celda}`).value = sud[f][c];
             if (document.getElementById(`${celda}`).value == "-") {
                 document.getElementById(`${celda}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintarTaula(id)'>`;
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintaTaula(id)'>`;
             }
         }
     }
     document.getElementById('errors').innerText = '';
 }
 
-function pintarTaula(id) {
+function pintaTaula(id) {
     let casellaSeleccionada = id;
     for (let i = 1; i <= 81; i++) {
-        pintarFilaColumna(casellaSeleccionada, i);
-        pintarQuadrant(casellaSeleccionada)
+        pintaFilaiColumna(casellaSeleccionada, i);
+        pintaQuadrant(casellaSeleccionada)
         document.getElementById(i).webkitAnimationPlayState = "stop";
     }
 }
 
-function pintarFilaColumna(casellaSeleccionada, i) {
+function pintaFilaiColumna(casellaSeleccionada, i) {
     if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
         document.getElementById(i).style.background = "#caf2fa";
 
@@ -108,7 +98,7 @@ function pintarFilaColumna(casellaSeleccionada, i) {
     }
 }
 
-function pintarQuadrant(id) {   
+function pintaQuadrant(id) {   
     for (square of squares) {
         if (square.includes(parseInt(id))) {
             for (let x = 0; x < square.length; x++) document.getElementById(square[x]).style.background = "#caf2fa";
@@ -124,8 +114,8 @@ function resoldreTaula() {
     if (botoFacil) { res = solucioFacil[n] } else if (botoIntermig) { res = solucioIntermig[n] } else if (botoDificil) { res = solucioDificil[n] }
     document.getElementById("taulaSudoku").innerHTML = '';
     for (let f = 0, celda = 1; f < 9; f++) {
-        let tabla = document.getElementById("taulaSudoku");
-        let fila = tabla.insertRow(f);
+        let taula = document.getElementById("taulaSudoku");
+        let fila = taula.insertRow(f);
         for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
             columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
@@ -201,4 +191,13 @@ function celdaCorrecta(celda) {
 
 function celdaResolta(celda) {
     return `<input type='text' maxLength='1' class='celdaResolta' id='${celda}' disabled>`;
+}
+
+function startJoc() {
+    document.getElementById("taulaSudoku").innerHTML = '';
+    if (botoFacil) { dificultat = dificultats[0] } else if (botoIntermig) { dificultat = dificultats[1] } else if (botoDificil) { dificultat = dificultats[2] }
+    document.getElementById("top").innerHTML = `<h3 class="dificultat" id="dificultat">${dificultat}</h3>`;
+    crearTaula();
+    startCronometre();
+    mostraBottom();
 }
