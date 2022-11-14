@@ -65,15 +65,18 @@ function crearTaula() {
         let fila = taula.insertRow(f);      //  Assignem a una variable el metode insertRow. Aquesta línea de codi inserta fila a la taula per cada iteració del loop for que hem mencionat abans.
         for (let c = 0; c < 9; c++, celda++) {      // Creem un altre bucle que iterarà  per cada columna del sudoku
             let columna = fila.insertCell(c);       // Assignem a la variable column el metode insertCell, que ens permetrà inserir una Cel·la per cada posició de la columna.
-            columna.innerHTML = celdaCorrecta(celda);   // Per cada posició de la columna, executem la funció celdaCorrecta que ens retorna l'input on podrem inserir els números.
-            document.getElementById(`${celda}`).value = sud[f][c];      // La funció celdaCorrecta coloca com Id a cada casella la seva posició dins del sudoku, de forma que podem modificar el seu valor posteriorment.
-            if (document.getElementById(`${celda}`).value == "-") {
-                document.getElementById(`${celda}`).value = null;
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintaTaula(id)'>`;
+            columna.innerHTML = celdaCorrecta(celda);   // Per cada posició de la columna, introduïm el que els retorna la funció celdaCorrecta(), a la qual li passem la posició de la cel·la per la que està iterant.
+                                                        // La funció celdaCorrecta retorna una línea de codi HTML que coloca a cada casella un Id que defineix la seva posició dins del sudoku, de forma que podem modificar el seu valor posteriorment.
+                                                        // Aquesta cel·la però, serà diferent a la resta ja que no permetrem que el client la pugui modificar.
+            document.getElementById(`${celda}`).value = sud[f][c];      // Com que hem colocat un Id per cada cel·la, el que fem es colocar al valor de cada input el número que li correspon segons el sudoku predefinit.
+            if (document.getElementById(`${celda}`).value == "-") {    // Comparem el valor assignat a la línea anterior amb el valor que li correspon al sudoku que ve predefinit, 
+                document.getElementById(`${celda}`).value = null;     //  de forma que si té un '-', coloquem un valor "null" que serà el que haurà d'entrar l'usuari.
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintaTaula(id)'>`;   // Com que aquesta cel·la és la que haurà d'omplir l'usuari,
+                // la modifiquem perque sigui diferent a la que ja ve predefinida i afegim un event "onfocus" per quan es cliqui executi la funció pintaTaula(id) que la explicarém en les pròximes línies.
             }
         }
     }
-    document.getElementById('errors').innerText = '';
+    document.getElementById('errors').innerText = '';   // Amb aquesta linea buidem el contingut del div per tal que qualsevol text que es generi posteriorment, s'esborri al generar la taula de nou.
 }
 
 function pintaTaula(id) {
