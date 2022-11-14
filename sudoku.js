@@ -58,15 +58,15 @@ function crearTaula() {
     celda = 1;
     n = Math.floor(Math.random() * 3);      // Generem un número aleatori entre 1 i 3. Això es deu a que hem definit tres sudokus diferents per cada nivell dificultat, de forma que no es faci repetitiu.
     if (botoFacil) { sud = sudokuFacil[n] } else if (botoIntermig) { sud = sudokuIntermig[n] } else if (botoDificil) { sud = sudokuDificil[n] }     // Comprovem quina dificultat s'ha seleccionat
-                                                                                                                                                    // i seleccionem un sudoku aleatori de l'array de variables que hem creat
+                                                                                                                                                    // i seleccionem un sudoku  (sense completar) aleatori de l'array de variables que hem creat
                                                                                                                                                     // previament
-    for (let f = 0; f < 9; f++) {       // Generem un bucle que recorre les 9 files del sudoku
-        let taula = document.getElementById("taulaSudoku");
-        let fila = taula.insertRow(f);
-        for (let c = 0; c < 9; c++, celda++) {
-            let columna = fila.insertCell(c);
-            columna.innerHTML = celdaCorrecta(celda);
-            document.getElementById(`${celda}`).value = sud[f][c];
+    for (let f = 0; f < 9; f++) {       //  Generem un bucle va de 0 a 9 perquè son el numero de files que té un sudoku.
+        let taula = document.getElementById("taulaSudoku"); 
+        let fila = taula.insertRow(f);      //  Assignem a una variable el metode insertRow. Aquesta línea de codi inserta fila a la taula per cada iteració del loop for que hem mencionat abans.
+        for (let c = 0; c < 9; c++, celda++) {      // Creem un altre bucle que iterarà  per cada columna del sudoku
+            let columna = fila.insertCell(c);       // Assignem a la variable column el metode insertCell, que ens permetrà inserir una Cel·la per cada posició de la columna.
+            columna.innerHTML = celdaCorrecta(celda);   // Per cada posició de la columna, executem la funció celdaCorrecta que ens retorna l'input on podrem inserir els números.
+            document.getElementById(`${celda}`).value = sud[f][c];      // La funció celdaCorrecta coloca com Id a cada casella la seva posició dins del sudoku, de forma que podem modificar el seu valor posteriorment.
             if (document.getElementById(`${celda}`).value == "-") {
                 document.getElementById(`${celda}`).value = null;
                 columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintaTaula(id)'>`;
@@ -81,7 +81,6 @@ function pintaTaula(id) {
     for (let i = 1; i <= 81; i++) {
         pintaFilaiColumna(casellaSeleccionada, i);
         pintaQuadrant(casellaSeleccionada)
-        document.getElementById(i).webkitAnimationPlayState = "stop";
     }
 }
 
@@ -121,7 +120,6 @@ function resoldreTaula() {
             columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
             columna.innerHTML = celdaResolta(celda);
             document.getElementById(`${celda}`).value = res[f][c];
-
         }
     }
 }
@@ -141,9 +139,9 @@ function mostraErrors() {
             } 
             else {
                 document.getElementById(`${celda}`).style.background = '#ff9d96';
-                document.getElementById(`${celda}`).style.animation = "fadeInCeldaIncorrecta 0.5s";
                 errors++;
             }
+            
         }
     }
     if (document.getElementById('errors')) {
