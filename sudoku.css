@@ -41,6 +41,31 @@ html {
     justify-content: space-evenly;
 }
 
+.dropdown-menu {
+    border: none;
+    background-color: transparent;
+    animation: fadeIn 0.5s;
+}
+
+.dropdown-menu li {
+    margin: -10px;
+    display: inline;
+}
+
+.dropdown-menu li:nth-child(1){
+    margin-left: -21px;
+    
+}
+
+#btn_intermig {
+    background-color: rgb(218, 218, 0);
+    border: none;
+}
+
+#btn_intermig:hover {
+    background-color: rgb(187, 187, 0);
+}
+
 
 #taulaSudoku{
     margin: auto;
@@ -48,7 +73,6 @@ html {
     margin-top: 0px;
     font-size: 23px;
     margin-bottom: 20px;
-
 }
 
 tbody{
@@ -85,26 +109,6 @@ td:nth-of-type(3),td:nth-of-type(6){
     
 }
 
-.dropdown-menu {
-    text-align: center;
-    border: none;
-    background-color: transparent;
-    animation: fadeIn 0.5s;
-}
-
-.dropdown-menu button {
-    margin-left: -20px;
-}
-
-#btn_intermig {
-    background-color: rgb(218, 218, 0);
-    border: none;
-}
-
-#btn_intermig:hover {
-    background-color: rgb(187, 187, 0);
-}
-
 .celdaCorrecta {
     background-color:white;
     font-weight: bold;
@@ -136,6 +140,10 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 .numeros button {
     margin-left: 20px;
+}
+
+.numeros button:nth-child(1) {
+    margin-left: -3px;
 }
 
 .errors {
@@ -178,15 +186,10 @@ td:nth-of-type(3),td:nth-of-type(6){
 
 @keyframes Naranja {
     from {background-color: #caf2fa;}
-    to {background-color: #ffc982;}
+    to {background-color: #febb62;}
 }
 
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
-}
-
-@keyframes fadeInCeldaIncorrecta {
-    from {background-color: white}
-    to {background-color: #ff9d96;}
 }

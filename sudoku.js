@@ -147,10 +147,13 @@ function mostraErrors() {
             
         }
     }
-    if (document.getElementById('errors')) {
-        document.getElementById('errors').innerText = `Tens ${errors} errors`;
-    } else {
-        document.getElementById('errors').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
+    if(errors == 0) resoldreTaula();
+    else {
+        if (document.getElementById('errors')) {
+            document.getElementById('errors').innerText = `Tens ${errors} errors`;
+        } else {
+            document.getElementById('errors').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
+        }
     }
 }
 
