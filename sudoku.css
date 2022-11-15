@@ -66,6 +66,16 @@ html {
     background-color: rgb(187, 187, 0);
 }
 
+.top {
+    margin: auto;
+    margin-top: 25px;
+    width: 480px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    text-shadow: 0 3px 10px black;
+}
 
 #taulaSudoku{
     margin: auto;
@@ -154,17 +164,6 @@ td:nth-of-type(3),td:nth-of-type(6){
     color: white;
     text-shadow: 0 3px 10px black;
     margin-bottom: 30px;
-}
-
-.top {
-    margin: auto;
-    margin-top: 25px;
-    width: 480px;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    text-shadow: 0 3px 10px black;
 }
 
 .dificultat{

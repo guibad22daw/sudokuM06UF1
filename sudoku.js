@@ -53,7 +53,7 @@ window.onload = function () {
     }
 }
 
- // Funció crearTaula. Genera la tula i introdueix els valors predeterminats segons la dificultat que s'hagi escollit.
+ // Funció crearTaula. Genera la taula i introdueix els valors predeterminats segons la dificultat que s'hagi escollit.
 function crearTaula() {
     celda = 1;
     n = Math.floor(Math.random() * 3);      // Generem un número aleatori entre 1 i 3. Això es deu a que hem definit tres sudokus diferents per cada nivell dificultat, de forma que no es faci repetitiu.
@@ -71,7 +71,7 @@ function crearTaula() {
             document.getElementById(`${celda}`).value = sud[f][c];      // Com que hem colocat un Id per cada cel·la, el que fem es colocar al valor de cada input el número que li correspon segons el sudoku predefinit.
             if (document.getElementById(`${celda}`).value == "-") {    // Comparem el valor assignat a la línea anterior amb el valor que li correspon al sudoku que ve predefinit, 
                 document.getElementById(`${celda}`).value = null;     //  de forma que si té un '-', coloquem un valor "null" que serà el que haurà d'entrar l'usuari.
-                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintaTaula(id)'>`;   // Com que aquesta cel·la és la que haurà d'omplir l'usuari,
+                columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda}' onfocus='pintaTaula(id)' autocomplete='off'>`;   // Com que aquesta cel·la és la que haurà d'omplir l'usuari,
                 // la modifiquem perque sigui diferent a la que ja ve predefinida i afegim un event "onfocus" per quan es cliqui executi la funció pintaTaula(id) que la explicarém en les pròximes línies.
             }
         }
@@ -79,85 +79,89 @@ function crearTaula() {
     document.getElementById('errors').innerText = '';   // Amb aquesta linea buidem el contingut del div per tal que qualsevol text que es generi posteriorment, s'esborri al generar la taula de nou.
 }
 
+// Funció crearTaula. Pinta els cuadrants, files i columnes que seleccionem.
 function pintaTaula(id) {
     let casellaSeleccionada = id;
-    for (let i = 1; i <= 81; i++) {
-        pintaFilaiColumna(casellaSeleccionada, i);
-        pintaQuadrant(casellaSeleccionada)
+    for (let i = 1; i <= 81; i++) {     // Bucle per iterar per les 81 caselles del sudoku
+        pintaFilaiColumna(casellaSeleccionada, i);      // Funció pintar fila i columna del id.
+        pintaQuadrant(casellaSeleccionada)      // Funció pintar quadrant del id.
     }
 }
 
+// Funció pintaFilaiColumna. Pinta les files i columnes de la id que li passem per paràmetre.
 function pintaFilaiColumna(casellaSeleccionada, i) {
-    if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {
-        document.getElementById(i).style.background = "#caf2fa";
+    if (Math.ceil(i / 9) == Math.ceil(casellaSeleccionada / 9)) {       // Fem un arrodoniment de la posició de la casella del bucle entre 9 i la igualem a l'arrodoniment de la divisió de la casella seleccionada entre 9.
+                                                                        // Fent això, el que obtenim és pintar la fila de la casella que tenim seleccionada.
+        document.getElementById(i).style.background = "#caf2fa";       // Pintem el color de les caselles de la fila.
 
-    } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {
-        document.getElementById(i).style.background = "#caf2fa";
-    } else {
-        if(document.getElementById(i).disabled) document.getElementById(i).style.background = "white";
-        else document.getElementById(i).style.background = "white";
+    } else if ((Math.trunc(i % 9)) == (Math.trunc(casellaSeleccionada % 9))) {      // Fem el mateix que abans pero utilitzant el metode .trunc, que el que fa és agafar la part sencera del número sense tenir en compte els decimals,
+                                                                                    // d'aquesta forma, aconseugim pintar la columna a la que pertany la casella que tenim seleccionada.
+        document.getElementById(i).style.background = "#caf2fa";                   // Pintem el color de les caselles de la columna.
+    } else {     // Si no correspon a la fila o columna pintem les caselles restants de blanc (predeterminat).
+        document.getElementById(i).style.background = "white"; 
         
     }
 }
 
+// Funció pintaQuadrant. Aquesta funció pinta el quadrant del qual forma part la casella amb el id que li passem per paràmetre.
 function pintaQuadrant(id) {   
-    for (square of squares) {
-        if (square.includes(parseInt(id))) {
+    for (square of squares) {   // Iterem sobre l'array de cariables creada al principi del codi.
+        if (square.includes(parseInt(id))) {    // Sí l'array conté l'id, iterem per tots els id de l'array del quadrant que conté l'ID i els pintem del color seleccionat.
             for (let x = 0; x < square.length; x++) document.getElementById(square[x]).style.background = "#caf2fa";
         }
     }
 }
 
+
+// Funció resoldreTaula. Aquesta funció resoldrá la taula, pararà el cronometre i mostrarà a l'usuari que el joc ha acabat.
 function resoldreTaula() {
-    stopCronometre();
-    document.getElementById('numeros').innerHTML = '';
-    if(minuts == 0) document.getElementById('errors').innerText = `Felicitats! Has completat el sudoku en ${segons} segon/s.`;
-    else document.getElementById('errors').innerHTML = `Felicitats! Has completat el sudoku en ${minuts} minut/s i ${segons} segon/s.`;
-    if (botoFacil) { res = solucioFacil[n] } else if (botoIntermig) { res = solucioIntermig[n] } else if (botoDificil) { res = solucioDificil[n] }
-    document.getElementById("taulaSudoku").innerHTML = '';
-    for (let f = 0, celda = 1; f < 9; f++) {
+    stopCronometre(); // Parem el cronometre
+    document.getElementById('numeros').innerHTML = ''; // Posem la id del html numeros a null.
+    if(minuts == 0) document.getElementById('errors').innerText = `Felicitats! Has completat el sudoku en ${segons} segon/s.`;  // Sí s'ha solucionat en menys d'1 minut, mostrarem a l'usuari el temps trigat en segons.
+    else document.getElementById('errors').innerHTML = `Felicitats! Has completat el sudoku en ${minuts} minut/s i ${segons} segon/s.`;     // Si supera el minut mostrarà també els minuts.
+    if (botoFacil) { res = solucioFacil[n] } else if (botoIntermig) { res = solucioIntermig[n] } else if (botoDificil) { res = solucioDificil[n] }  // Condició per fer que la variable res sigui una solució diferent segons la dificultat escollida.
+    document.getElementById("taulaSudoku").innerHTML = '';     // Reiniciem taulaSudoku.
+    for (let f = 0, celda = 1; f < 9; f++) {    // Tornem a crear la taula pero aquest cop introduïnt els valors de l'array del sudokou solucionat.
         let taula = document.getElementById("taulaSudoku");
         let fila = taula.insertRow(f);
         for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
-            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`;
-            columna.innerHTML = celdaResolta(celda);
-            document.getElementById(`${celda}`).value = res[f][c];
+            columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`; // Fem que la casella sigui disabled
+            columna.innerHTML = celdaResolta(celda); // Fem que la casella sigui una casella Resolta
+            document.getElementById(`${celda}`).value = res[f][c]; // Fem que el value de la casella sigui igual que a la de l'array solucionat.
         }
     }
 }
 
+// Funció mostraErrors. Mostra els errors quan es prem el botó "mostrar errors", canviant així el fons de les caselles incorrectes i posant les caselles correctes en blanc.
 function mostraErrors() {
-    let valorCelda, sol;
+    let valorCelda, sol;    // Declarem les variables.
     celda = 1; errors = 0;
-    if (botoFacil) { sol = solucioFacil[n] } else if (botoIntermig) { sol = solucioIntermig[n] } else if (botoDificil) { sol = solucioDificil[n] }
-    for (let f = 0; f < 9; f++) {
+    if (botoFacil) { sol = solucioFacil[n] } else if (botoIntermig) { sol = solucioIntermig[n] } else if (botoDificil) { sol = solucioDificil[n] }   // Mateix procediment per saber quina dificultat s'ha escollit.
+    for (let f = 0; f < 9; f++) {   // Recorrem les caselles amb 2 bucles for.
         for (let c = 0; c < 9; c++, celda++) {
-            valorCelda = document.getElementById(`${celda}`).value;
-            if (valorCelda == sol[f][c]){
-                document.getElementById(`${celda}`).style.background = 'white';
-                document.getElementById(`${celda}`).style.fontWeight = 'bold';
+            valorCelda = document.getElementById(`${celda}`).value;    // Assignem la variable valorCelda per obternir el valor de la casella per la que itera en aquell moment.
+            if (valorCelda == sol[f][c]){       // Si valorCelda és igual al valor del array corresponent del solucionari canviem l'estil per tal que la casella sigui "correcta".
+                document.getElementById(`${celda}`).style.background = 'white';     // Posem el fons de la casella de color blanc.
+                document.getElementById(`${celda}`).style.fontWeight = 'bold';      // Posem el tipus de lletra en negreta perquè destaqui.
                 document.getElementById(`${celda}`).style.color = 'black';
-                document.getElementById(`${celda}`).disabled = true;
+                document.getElementById(`${celda}`).disabled = true;                // Posem la casella en disabled perquè l'usuari no pugui modificar una resposta que és correcta.
             } 
-            else {
+            else {          // Si el valor no coincideix amb el de l'array de la solució, canviem el fons de la casella a vermell per tal que es marqui com "incorrecte".
                 document.getElementById(`${celda}`).style.background = '#ff9d96';
-                errors++;
+                errors++;  // Sumem errors + 1.
             }
             
         }
     }
-    if(errors == 0) resoldreTaula();
-    else {
-        if (document.getElementById('errors')) {
-            document.getElementById('errors').innerText = `Tens ${errors} errors`;
-        } else {
-            document.getElementById('errors').innerHTML += `<label id="errors" class="errors">Tens ${errors} errors</label>`;
-        }
+    if(errors == 0) resoldreTaula();    // Si es prem el botó de mostrar errors i hi ha 0, executem la funció resoldreTaula() directament.
+    else {  // Si hi ha errors, ho mostrarà a l'usuari mitjançant la següent línia de codi.
+        document.getElementById('errors').innerHTML = `<label id="errors" class="errors">Tens ${errors} errors.</label>`;
     }
 }
 
-let minuts = 0, segons = 0, centesimes = 0, running = 0;
+let minuts = 0, segons = 0, centesimes = 0, running = 0; // Instanciem les variables
+// Funció startCronometre. Inicia el cronometre 
 function startCronometre() {
     clearInterval(running);
     minuts = 0, segons = 0, centesimes = 0;
@@ -179,29 +183,34 @@ function startCronometre() {
     running = setInterval(incrementar, 10);
 }
 
+// Funció stopCronometre. Pararà el cronometre.
 function stopCronometre() {
     clearInterval(running);
     running = null;
 }
 
+// Funció mostraBottom. Ens mostra els botons de solució i mostrar errors.
 function mostraBottom() {
-    document.getElementById('numeros').innerHTML = `<button id="btn_solucio" type="button" class="btn btn-success" onclick="resoldreTaula()">Solució</button>`;
-    document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-danger" onclick="mostraErrors()">Mostrar errors</button>`;
+    document.getElementById('numeros').innerHTML = `<button id="btn_solucio" type="button" class="btn btn-success" onclick="resoldreTaula()">Solució</button>`; // Crea el botó solució en "numeros".
+    document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-danger" onclick="mostraErrors()">Mostrar errors</button>`; // Afegeix el botó Mostrar Errors darrere de solucio en "numeros".
 }
 
+// Cambia la clase d'una casella a "Correcta"
 function celdaCorrecta(celda) {
     return `<input type='text' maxLength='1' class='celdaCorrecta' id='${celda}' disabled>`;
 }
 
+// Cambia la clase d'una casella a "Resolta"
 function celdaResolta(celda) {
     return `<input type='text' maxLength='1' class='celdaResolta' id='${celda}' disabled>`;
 }
 
+// Funció startJoc. Comença la partida, crea la taula, posa el cronometre en marxa i mostra els botons de resoldre i mostrar errors.
 function startJoc() {
-    document.getElementById("taulaSudoku").innerHTML = '';
-    if (botoFacil) { dificultat = dificultats[0] } else if (botoIntermig) { dificultat = dificultats[1] } else if (botoDificil) { dificultat = dificultats[2] }
-    document.getElementById("top").innerHTML = `<h3 class="dificultat" id="dificultat">${dificultat}</h3>`;
-    crearTaula();
-    startCronometre();
-    mostraBottom();
+    document.getElementById("taulaSudoku").innerHTML = ''; // Posa la taula a "null"
+    if (botoFacil) { dificultat = dificultats[0] } else if (botoIntermig) { dificultat = dificultats[1] } else if (botoDificil) { dificultat = dificultats[2] } // Assignem la dificultat segons el botó escollit.
+    document.getElementById("top").innerHTML = `<h3 class="dificultat" id="dificultat">${dificultat}</h3>`; // Mostrem la dificultat escollida
+    crearTaula(); // Creem la taula.
+    startCronometre(); // Posem cronometre en marxa.
+    mostraBottom(); // Mostrem botons de Solució i Errors.
 }
