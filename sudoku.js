@@ -19,7 +19,7 @@ let solucioDificil1 = ["854372196", "326941758", "917865234", "268517349", "4916
 let solucioDificil2 = ["126437958", "895621473", "374985126", "457193862", "983246517", "612578394", "269314785", "548769231", "731852649"];
 let solucioDificil3 = ["514923867", "396187425", "728456931", "235814796", "867539142", "149762583", "982671354", "651348279", "473295618"];
 
-// Mitjançant bucles "for", creem arrays del 1 al 9 (que són la quantitat de quadrants que hi ha). Per cada quadrant que hi ha que emmagatzemen la posició de les celes que te cada quadrant.
+// Mitjançant bucles "for", creem arrays del 1 al 9 (que són la quantitat de quadrants que hi ha). Per cada quadrant que hi ha, s'emmagatzemen la posició de les cel·les que te cada quadrant.
 for (let i = 1, x=0; i <= 3; i++,x+=3) this["square"+i] = [1+x, 2+x, 3+x, 10+x, 11+x, 12+x, 19+x, 20+x, 21+x];
 for (let i = 4, x=0; i <= 6; i++,x+=3) this["square"+i] = [28+x, 29+x, 30+x, 37+x, 38+x, 39+x, 46+x, 47+x, 48+x];
 for (let i = 7, x=0; i <= 9; i++,x+=3) this["square"+i] = [55+x, 56+x, 57+x, 64+x, 65+x, 66+x, 73+x, 74+x, 75+x];
@@ -127,7 +127,7 @@ function resoldreTaula() {
         for (let c = 0; c < 9; c++, celda++) {
             let columna = fila.insertCell(c);
             columna.innerHTML = `<input type='text' maxLength='1' class='celda' id='${celda} disabled>`; // Fem que la casella sigui disabled
-            columna.innerHTML = celdaResolta(celda); // Fem que la casella sigui una casella Resolta
+            columna.innerHTML = celdaCorrecta(celda); // Fem que la casella sigui una casella Resolta
             document.getElementById(`${celda}`).value = res[f][c]; // Fem que el value de la casella sigui igual que a la de l'array solucionat.
         }
     }
@@ -155,62 +155,54 @@ function mostraErrors() {
         }
     }
     if(errors == 0) resoldreTaula();    // Si es prem el botó de mostrar errors i hi ha 0, executem la funció resoldreTaula() directament.
-    else {  // Si hi ha errors, ho mostrarà a l'usuari mitjançant la següent línia de codi.
+    else {      // Si hi ha errors, ho mostrarà a l'usuari mitjançant la següent línia de codi.
         document.getElementById('errors').innerHTML = `<label id="errors" class="errors">Tens ${errors} errors.</label>`;
     }
 }
 
-let minuts = 0, segons = 0, centesimes = 0, running = 0; // Instanciem les variables
+let minuts = 0, segons = 0, running = 0;    // Instanciem les variables
 // Funció startCronometre. Inicia el cronometre 
 function startCronometre() {
-    clearInterval(running);
-    minuts = 0, segons = 0, centesimes = 0;
-    document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts"></span>:<span id="segons"/></span></div>`;
-    const idMinuts = document.getElementById("minuts");
+    clearInterval(running);         // Es posa l'interval a 0, de forma que cada segon dura 1 segon. Sense aquesta línea, cada cop que s'iniciés el cronómetre, l'interval incrementaria i els segons passarien més ràpid,
+    minuts = 0, segons = 0;   // Posem les variables a 0.
+    document.getElementById("top").innerHTML += `<div class="cronometre"><span id="minuts">00</span>:<span id="segons"/>00</span></div>`;   // Afegim el rellotge per HTML.
+    const idMinuts = document.getElementById("minuts");  // Definim com a constants el valor actual que tenen els minuts i els segons al HTML.
     const idSegons = document.getElementById("segons");
-    const sumarMinut = () => { if (minuts < 99) minuts++; }
-    const sumarSegon = () => {
-        if (segons === 59) { segons = 0; sumarMinut(); }
-        else segons++;
+    const sumarMinut = () => { if (minuts < 99) minuts++; }  // Declarem una funció que fa que mentre no s'arribi a 99 minuts (és a dir el limit), els minuts es sumin.
+    const incrementar = () => {     // Declarem una altra funció que el que fa és incrementar el valor dels segons.
+        if (segons === 59) { segons = 0; sumarMinut(); }  // Si segons arriba a 59, es posen a 0 i executem la funció sumarMinut.
+        else segons++;     // Si no arriba a 59 segons, increntem segons + 1.
+        if (segons < 10) idSegons.innerHTML = `0${segons}`;     // Mentre el comptador no arribi a 10 segons, introduim un 0 al davant perquè en canvi de que es vegi com 00:5 es vegi com 00:05.
+        else idSegons.innerHTML = segons;       // Quan passen 10 segons, ja no cal afegir un 0 davant.
+        if (minuts < 10) idMinuts.innerHTML = `0${minuts}`;     // Fem exactament el mateix amb els minuts.
+        else idMinuts.innerHTML = minuts;    
     }
-    const incrementar = () => {
-        if (centesimes === 99) { centesimes = 0; sumarSegon(); }
-        else centesimes++;
-        if (segons < 10) idSegons.innerHTML = `0${segons}`;
-        else idSegons.innerHTML = segons;
-        if (minuts < 10) idMinuts.innerHTML = `0${minuts}`;
-    }
-    running = setInterval(incrementar, 10);
+    running = setInterval(incrementar, 1000);     // Definim una variable que el que fa es executar la funció "incrementar" cada 1 segon, de forma que es sincronitza amb un temporitzador real.
 }
 
 // Funció stopCronometre. Pararà el cronometre.
 function stopCronometre() {
-    clearInterval(running);
-    running = null;
+    clearInterval(running);     // Atura l'interval que hem creat previament
+    running = null;     // La variable assignada a l'interval passa a ser null.
 }
 
 // Funció mostraBottom. Ens mostra els botons de solució i mostrar errors.
 function mostraBottom() {
-    document.getElementById('numeros').innerHTML = `<button id="btn_solucio" type="button" class="btn btn-success" onclick="resoldreTaula()">Solució</button>`; // Crea el botó solució en "numeros".
-    document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-danger" onclick="mostraErrors()">Mostrar errors</button>`; // Afegeix el botó Mostrar Errors darrere de solucio en "numeros".
+    document.getElementById('numeros').innerHTML = `<button id="btn_solucio" type="button" class="btn btn-success" onclick="resoldreTaula()">Solució</button>`;     // Crea el botó solució al div "numeros".
+    document.getElementById('numeros').innerHTML += `<button id="btn_mostraErrors" type="button" class="btn btn-danger" onclick="mostraErrors()">Mostrar errors</button>`;  // Afegeix el botó Mostrar Errors darrere de solucio al div "numeros".
 }
 
-// Cambia la clase d'una casella a "Correcta"
+// Canvia la clase d'una casella a "celdaCorrecta" per aplicar-li altres propietats css, de forma que es posa en "disabled" perquè no es pugui editar.
 function celdaCorrecta(celda) {
     return `<input type='text' maxLength='1' class='celdaCorrecta' id='${celda}' disabled>`;
 }
 
-// Cambia la clase d'una casella a "Resolta"
-function celdaResolta(celda) {
-    return `<input type='text' maxLength='1' class='celdaResolta' id='${celda}' disabled>`;
-}
-
 // Funció startJoc. Comença la partida, crea la taula, posa el cronometre en marxa i mostra els botons de resoldre i mostrar errors.
 function startJoc() {
-    document.getElementById("taulaSudoku").innerHTML = ''; // Posa la taula a "null"
-    if (botoFacil) { dificultat = dificultats[0] } else if (botoIntermig) { dificultat = dificultats[1] } else if (botoDificil) { dificultat = dificultats[2] } // Assignem la dificultat segons el botó escollit.
+    document.getElementById("taulaSudoku").innerHTML = '';  // Buida la taula de forma que comenci de nou.
+    if (botoFacil) { dificultat = dificultats[0] } else if (botoIntermig) { dificultat = dificultats[1] } else if (botoDificil) { dificultat = dificultats[2] }  // Escollim d'una llista el text que de la dificultat segonms quina s'hagi escollit.
     document.getElementById("top").innerHTML = `<h3 class="dificultat" id="dificultat">${dificultat}</h3>`; // Mostrem la dificultat escollida
-    crearTaula(); // Creem la taula.
-    startCronometre(); // Posem cronometre en marxa.
-    mostraBottom(); // Mostrem botons de Solució i Errors.
+    crearTaula();   // Creem la taula.
+    startCronometre();  // Posem cronometre en marxa.
+    mostraBottom();     // Mostrem botons de Solució i Errors.
 }
