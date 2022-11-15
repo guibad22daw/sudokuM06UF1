@@ -33,7 +33,7 @@ let solucioFacil = [solucioFacil1, solucioFacil2, solucioFacil3];
 let solucioIntermig = [solucioIntermig1, solucioIntermig2, solucioIntermig3];
 let solucioDificil = [solucioDificil1, solucioDificil2, solucioDificil3];
 let botoFacil = 0, botoIntermig = 0, botoDificil = 0, errors = 0,  celda = 1, n = 0;
-let dificultats = ["Fàcil","Intermig","Dificil"];
+let dificultats = ["Fàcil","Intermig","Difícil"];
 
 // Afegim un event que s'acciona quan tots els recursos dins de la funció han acabat de carregar.
 window.onload = function () {
