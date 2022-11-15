@@ -20,9 +20,9 @@ let solucioDificil2 = ["126437958", "895621473", "374985126", "457193862", "9832
 let solucioDificil3 = ["514923867", "396187425", "728456931", "235814796", "867539142", "149762583", "982671354", "651348279", "473295618"];
 
 // Mitjançant bucles "for", creem arrays del 1 al 9 (que són la quantitat de quadrants que hi ha). Per cada quadrant que hi ha, s'emmagatzemen la posició de les cel·les que te cada quadrant.
-for (let i = 1, x=0; i <= 3; i++,x+=3) this["square"+i] = [1+x, 2+x, 3+x, 10+x, 11+x, 12+x, 19+x, 20+x, 21+x];
-for (let i = 4, x=0; i <= 6; i++,x+=3) this["square"+i] = [28+x, 29+x, 30+x, 37+x, 38+x, 39+x, 46+x, 47+x, 48+x];
-for (let i = 7, x=0; i <= 9; i++,x+=3) this["square"+i] = [55+x, 56+x, 57+x, 64+x, 65+x, 66+x, 73+x, 74+x, 75+x];
+for (let i = 1, x=0; i <= 3; i++,x+=3) this["square"+i] = [1+x, 2+x, 3+x, 10+x, 11+x, 12+x, 19+x, 20+x, 21+x];      // square1, square2, square 3
+for (let i = 4, x=0; i <= 6; i++,x+=3) this["square"+i] = [28+x, 29+x, 30+x, 37+x, 38+x, 39+x, 46+x, 47+x, 48+x];   // square4, square5, square 6
+for (let i = 7, x=0; i <= 9; i++,x+=3) this["square"+i] = [55+x, 56+x, 57+x, 64+x, 65+x, 66+x, 73+x, 74+x, 75+x];   // square7, square8, square 9
 
 // Declarem arrays de variables per optimitzar el codi i altres variables que s'utilitzaran posteriorment
 let squares = [square1, square2, square3, square4, square5, square6, square7, square8, square9];
@@ -204,5 +204,5 @@ function startJoc() {
     document.getElementById("top").innerHTML = `<h3 class="dificultat" id="dificultat">${dificultat}</h3>`; // Mostrem la dificultat escollida
     crearTaula();   // Creem la taula.
     startCronometre();  // Posem cronometre en marxa.
-    mostraBottom();     // Mostrem botons de Solució i Errors.
+    mostraBottom();     // Mostrem botons de Solució i Mostrar Errors.
 }
